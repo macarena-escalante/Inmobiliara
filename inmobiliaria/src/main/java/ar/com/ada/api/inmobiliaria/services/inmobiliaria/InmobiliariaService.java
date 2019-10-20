@@ -1,8 +1,12 @@
 package ar.com.ada.api.inmobiliaria.services.inmobiliaria;
 
+import org.springframework.stereotype.Service;
+
 /**
  * InmobiliariaService
  */
+@Service
+
 public class InmobiliariaService {
 
     public void agregarInmueble(){

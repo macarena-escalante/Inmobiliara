@@ -1,8 +1,9 @@
 package ar.com.ada.api.inmobiliaria.entities.persona;
 
-import java.util.List;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 

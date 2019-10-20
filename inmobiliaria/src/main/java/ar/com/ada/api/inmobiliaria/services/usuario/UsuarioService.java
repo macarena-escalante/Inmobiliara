@@ -1,8 +1,11 @@
 package ar.com.ada.api.inmobiliaria.services.usuario;
 
+import org.springframework.stereotype.Service;
+
 /**
  * UsuarioService
  */
+@Service
 public class UsuarioService {
 
     public void buscar(){
