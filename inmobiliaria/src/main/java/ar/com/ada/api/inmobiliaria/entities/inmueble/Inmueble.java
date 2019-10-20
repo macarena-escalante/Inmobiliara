@@ -49,7 +49,6 @@ public class Inmueble {
 
     @OneToOne
     @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
-    @Column(name= "locador_id")
     private int locatarioId;     // cómo reconce estos id si en bd va a ser persona_id??
 
     @ManyToOne
