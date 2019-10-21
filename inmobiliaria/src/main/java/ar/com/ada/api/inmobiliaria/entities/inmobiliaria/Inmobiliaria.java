@@ -19,6 +19,8 @@ public class Inmobiliaria {
     private String direccion;
 
     private String cuit;
+
+    private String email;
 /*
     @OneToMany(mappedBy = "inmobiliaria", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -81,4 +83,12 @@ public class Inmobiliaria {
         this.locatarios = locatarios;
     }
     */
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
