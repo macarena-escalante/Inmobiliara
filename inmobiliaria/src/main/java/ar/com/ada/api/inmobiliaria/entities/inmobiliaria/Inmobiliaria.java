@@ -3,20 +3,13 @@ package ar.com.ada.api.inmobiliaria.entities.inmobiliaria;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
-import ar.com.ada.api.inmobiliaria.entities.persona.Locador;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
 
 /**
@@ -35,19 +28,19 @@ public class Inmobiliaria {
     private String direccion;
 
     private String cuit;
-
+/*
     @OneToMany(mappedBy = "inmobiliaria", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
 
-    @OneToMany(mappedBy = "inmobiliaria", cascade = CascadeType.ALL)
+    /*@OneToMany(mappedBy = "inmobiliaria", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Locador> locadores = new ArrayList<Locador>();
 
     @OneToMany(mappedBy = "inmobiliaria", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Locatario> locatarios = new ArrayList<Locatario>();
-
+*/
     public int getInmobiliariaId() {
         return inmobiliariaId;
     }
@@ -79,7 +72,7 @@ public class Inmobiliaria {
     public void setCuit(String cuit) {
         this.cuit = cuit;
     }
-
+/*
     public List<Inmueble> getInmuebles() {
         return inmuebles;
     }
@@ -103,4 +96,5 @@ public class Inmobiliaria {
     public void setLocatarios(List<Locatario> locatarios) {
         this.locatarios = locatarios;
     }
+    */
 }

@@ -1,9 +1,15 @@
 package ar.com.ada.api.inmobiliaria.entities.persona;
 
-import java.util.*;
+import java.util.List;
 
-import javax.persistence.*;
-
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -18,6 +24,7 @@ import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 public class Locador {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "locador_id")
     private int locadorId;
 
