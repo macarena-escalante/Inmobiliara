@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
+import ar.com.ada.api.inmobiliaria.entities.persona.Locador;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
 import ar.com.ada.api.inmobiliaria.repositorys.inmueble.InmuebleRepository;
 import ar.com.ada.api.inmobiliaria.services.inmobiliaria.InmobiliariaService;
@@ -58,14 +59,14 @@ public class InmuebleService {
             double superficie, int antiguedad, int locadorId, String tipoInmueble) {
 
         Inmueble inmueble = new Inmueble();
-        Inmobiliaria inmobiliaria = inmobiliariaService.buscarPorId(inmobiliariaId);
+        Locador locador = locadorService.buscarLocadorPorId(locadorId);
 
         inmueble.setDireccion(direccion);
         inmueble.setPrecio(precio);
         inmueble.setEstado(estado);
         inmueble.setSuperficie(superficie);
         inmueble.setAntiguedad(antiguedad);
-        inmueble.setInmobiliaria(inmobiliaria);
+        inmueble.setLocador(locador);
         inmueble.setTipoInmueble(tipoInmueble);
 
         repoInmueble.save(inmueble);
