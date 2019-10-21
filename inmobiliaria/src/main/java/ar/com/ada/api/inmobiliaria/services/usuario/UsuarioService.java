@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
+import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
 import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
 import ar.com.ada.api.inmobiliaria.repositorys.usuario.UsuarioRepository;
 import ar.com.ada.api.inmobiliaria.security.Crypto;
@@ -57,6 +58,19 @@ public class UsuarioService {
     public Usuario buscarPorEmail (String email) {
        return repoUsuario.findByEmail(email);
             
+    }
+
+    public Usuario agregarUsuario(Locatario locatario, String password, String email) {
+
+        Usuario u = new Usuario();
+        
+        u.setEmail(email);
+        u.setPassword(Crypto.encrypt(password, u.getEmail()));
+        u.setLocatario(locatario);
+        
+        repoUsuario.save(u);
+        return u;
+
     }
 
 

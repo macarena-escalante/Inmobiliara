@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
+import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
 import ar.com.ada.api.inmobiliaria.models.request.UsuarioRequest;
-import ar.com.ada.api.inmobiliaria.models.response.Response;
+import ar.com.ada.api.inmobiliaria.models.response.PostResponse;
 import ar.com.ada.api.inmobiliaria.services.inmobiliaria.InmobiliariaService;
+import ar.com.ada.api.inmobiliaria.services.persona.LocatarioService;
 import ar.com.ada.api.inmobiliaria.services.usuario.UsuarioService;
 
 /**
@@ -24,10 +26,13 @@ public class UsuarioController {
     @Autowired
     InmobiliariaService inmobiliariaService;
 
-    @PostMapping("/usuarios/inmobiliarias/{id}")
-    public Response postnewUsuarioInmob(@RequestBody UsuarioRequest req, @PathVariable int id){
+    @Autowired
+    LocatarioService locatarioService;
 
-        Response p = new Response();
+    @PostMapping("/usuarios/inmobiliarias/{id}")
+    public PostResponse postnewUsuarioInmob(@RequestBody UsuarioRequest req, @PathVariable int id){
+
+        PostResponse p = new PostResponse();
         Inmobiliaria inmobiliaria = inmobiliariaService.buscarPorId(id);
     
         usuarioService.agregarUsuarioInmobiliaria(inmobiliaria, req.password, req.email);
@@ -38,13 +43,13 @@ public class UsuarioController {
 
     }
 
-    @PostMapping("/usuarios/locatario/{id}")
-    public Response postnewUsuarioLocat(@RequestBody UsuarioRequest req, @PathVariable int id){
+    @PostMapping("/usuarios/locatarios/{id}")
+    public PostResponse postnewUsuarioLocat(@RequestBody UsuarioRequest req, @PathVariable int id){
 
-        Response p = new Response();
-        Locatario l = locatarioService.
+        PostResponse p = new PostResponse();
+        Locatario locatario = locatarioService.buscarLocatarioPorId(id);
     
-        usuarioService.agregarUsuarioInmobiliaria(inmobiliaria, req.password, req.email);
+        usuarioService.agregarUsuario(locatario, req.password, req.email);
 
         p.isOk = true;
         p.message = "Creaste un usuario con éxito.";

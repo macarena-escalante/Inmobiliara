@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
 import ar.com.ada.api.inmobiliaria.models.request.OperacionRequest;
+import ar.com.ada.api.inmobiliaria.models.response.PostResponse;
 import ar.com.ada.api.inmobiliaria.services.inmobiliaria.InmobiliariaService;
 import ar.com.ada.api.inmobiliaria.services.operacion.OperacionService;
 import ar.com.ada.api.inmobiliaria.services.usuario.UsuarioService;
@@ -27,9 +28,9 @@ public class OperacionController {
     UsuarioService usuarioService;
 
     @PostMapping
-    public Response postNewOperacion(@RequestBody OperacionRequest req){
+    public PostResponse postNewOperacion(@RequestBody OperacionRequest req){
 
-        Response p = new Response();
+        PostResponse p = new PostResponse();
 
         Inmueble i = inmobiliariaService.buscarPorId(id);
 

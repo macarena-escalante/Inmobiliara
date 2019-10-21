@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
 import ar.com.ada.api.inmobiliaria.models.request.InmobiliariaRequest;
-import ar.com.ada.api.inmobiliaria.models.response.Response;
+import ar.com.ada.api.inmobiliaria.models.response.PostResponse;
 import ar.com.ada.api.inmobiliaria.services.inmobiliaria.InmobiliariaService;
 
 /**
@@ -26,9 +26,9 @@ public class InmobiliariaController {
     InmobiliariaService inmobiliariaService;
     
     @PostMapping("/inmobiliarias")
-    public Response postnewInmobiliaria(@RequestBody InmobiliariaRequest req){
+    public PostResponse postnewInmobiliaria(@RequestBody InmobiliariaRequest req){
 
-        Response i = new Response();
+        PostResponse i = new PostResponse();
     
         inmobiliariaService.crearInmobiliaria(req.nombre, req.direccion, req.cuit, req.email);
 
@@ -54,9 +54,9 @@ public class InmobiliariaController {
     }
 
     @PutMapping("/inmobiliarias/{id}")
-    public Response actualizaEmpleado(@PathVariable int id, @RequestBody InmobiliariaRequest req){
+    public PostResponse actualizaEmpleado(@PathVariable int id, @RequestBody InmobiliariaRequest req){
 
-        Response p = new Response();
+        PostResponse p = new PostResponse();
         
         inmobiliariaService.actualizarInmobiliaria(id, req.direccion);
         
@@ -68,8 +68,8 @@ public class InmobiliariaController {
     }
 
     @DeleteMapping("inmobiliarias/{id}")
-    public Response deleteInmobiliaria (@PathVariable int id){
-        Response p = new Response();
+    public PostResponse deleteInmobiliaria (@PathVariable int id){
+        PostResponse p = new PostResponse();
         
         inmobiliariaService.buscarPorId(id);
 
