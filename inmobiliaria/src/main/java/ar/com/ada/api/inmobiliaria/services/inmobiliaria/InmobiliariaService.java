@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.Repo.inmobiliaria.InmobiliariaRepository;
+import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
 
 /**
  * InmobiliariaService
@@ -13,30 +14,20 @@ import ar.com.ada.api.inmobiliaria.Repo.inmobiliaria.InmobiliariaRepository;
 public class InmobiliariaService {
 
     @Autowired
-    InmobiliariaRepository repoInmobiliaria;
+    InmobiliariaRepository repo;
 
-    public void agregarInmueble(){
-
+   public void save(Inmobiliaria i) {
+        repo.save(i);
     }
-    public void agregarPersona(){  // quedamos en que era un método a Persona o 1 a Locador y 1 a Locatario??
 
-    }
-    public void eliminarInmueble(){
-
-    }
-    public void eliminarPersona(){
-
-    }
-    public void modificarInmueble(){
-
-    }
-    public void modificarPersona(){
-
-    }
-    public void actualizarInmueble(){
-
-    }
-    public void actualizarPersona(){
+    public Inmobiliaria crearInmobiliaria (String nombre, String direccion, String cuit){
         
+        Inmobiliaria i = new Inmobiliaria();
+        i.setNombre(nombre);
+        i.setDireccion(direccion);
+        i.setCuit(cuit);
+
+        repo.save(i);
+        return i;
     }
 }

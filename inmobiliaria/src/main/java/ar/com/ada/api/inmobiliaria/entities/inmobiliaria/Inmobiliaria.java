@@ -41,14 +41,7 @@ public class Inmobiliaria {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Locatario> locatarios = new ArrayList<Locatario>();
 */
-    public int getInmobiliariaId() {
-        return inmobiliariaId;
-    }
-
-    public void setInmobiliariaId(int inmobiliariaId) {
-        this.inmobiliariaId = inmobiliariaId;
-    }
-
+    
     public String getNombre() {
         return nombre;
     }
