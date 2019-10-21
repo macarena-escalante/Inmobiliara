@@ -3,7 +3,7 @@ package ar.com.ada.api.inmobiliaria.models.response;
 /**
  * InmobiliariaResponse
  */
-public class PostResponse {
+public class Response {
 
     public boolean isOk = false;
     public String message = "";

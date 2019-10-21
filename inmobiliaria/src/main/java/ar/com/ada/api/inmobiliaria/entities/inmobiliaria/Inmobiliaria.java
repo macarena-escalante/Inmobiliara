@@ -28,8 +28,6 @@ public class Inmobiliaria {
     private String cuit;
 
     private String email;
-
-    private Usuario usuario; 
 /*
     @OneToMany(mappedBy = "inmobiliaria", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -101,20 +99,7 @@ public class Inmobiliaria {
         this.email = email;
     }
 
-    
-    /**
-     * @param usuario the usuario to set
-     */
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-        this.usuario.setInmobiliaria(this); // Vinculamos ambos objetos entre si
+    public int getInmobiliariaId (){
+        return inmobiliariaId;
     }
-
-    /**
-     * @return the usuario
-     */
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
 }

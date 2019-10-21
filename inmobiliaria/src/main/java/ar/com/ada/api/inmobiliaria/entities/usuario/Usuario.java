@@ -23,9 +23,9 @@ public class Usuario {
     @Column(name = "usuario_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int usuarioId;
-
     private String email;
     private String password; 
+    
     
     @OneToOne
     @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
