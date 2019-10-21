@@ -1,6 +1,9 @@
 package ar.com.ada.api.inmobiliaria.services.caracteristica;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import ar.com.ada.api.inmobiliaria.Repo.caracteristica.CaracteristicaRepository;
 
 /**
  * CaracteristicaService
@@ -8,5 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CaracteristicaService {
 
-    
+    @Autowired
+    CaracteristicaRepository repoCaracteristica;
 }
