@@ -1,6 +1,13 @@
 package ar.com.ada.api.inmobiliaria.entities.inmobiliaria;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
 
 
 /**
@@ -21,6 +28,8 @@ public class Inmobiliaria {
     private String cuit;
 
     private String email;
+
+    private Usuario usuario; 
 /*
     @OneToMany(mappedBy = "inmobiliaria", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -91,4 +100,21 @@ public class Inmobiliaria {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+        this.usuario.setInmobiliaria(this); // Vinculamos ambos objetos entre si
+    }
+
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
 }
