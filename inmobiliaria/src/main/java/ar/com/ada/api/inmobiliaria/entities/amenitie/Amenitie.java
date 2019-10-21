@@ -26,7 +26,7 @@ public class Amenitie {
     private int amenitieId;
 
 
-     @ManyToMany(mappedBy = "amenities")
+    @ManyToMany(mappedBy = "amenities")
     private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
     
     private String descripcion;
