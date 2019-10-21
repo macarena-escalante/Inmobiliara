@@ -1,16 +1,7 @@
 package ar.com.ada.api.inmobiliaria.entities.inmobiliaria;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.*;
 
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
-import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
-import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
 
 /**
  * Inmobiliaria
