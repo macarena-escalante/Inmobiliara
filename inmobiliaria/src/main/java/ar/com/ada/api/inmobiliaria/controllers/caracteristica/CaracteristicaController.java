@@ -15,4 +15,6 @@ public class CaracteristicaController {
     CaracteristicaService caracteristicaService;
 
     
+
+    
 }
