@@ -11,5 +11,6 @@ import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
 @Repository
 public interface LocatarioRepository extends JpaRepository <Locatario , Integer> {
 
-    
+    Locatario findByDni(String dni);
+
 }
