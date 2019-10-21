@@ -5,5 +5,7 @@ package ar.com.ada.api.inmobiliaria.entities.operacion;
  */
 public class Reserva extends Operacion {
 
-    
+    public Reserva() {
+    }
+
 }
