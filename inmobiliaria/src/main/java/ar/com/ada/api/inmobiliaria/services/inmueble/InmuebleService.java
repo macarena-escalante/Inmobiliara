@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.com.ada.api.inmobiliaria.Repo.inmueble.InmuebleRepository;
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
+import ar.com.ada.api.inmobiliaria.repositorys.inmueble.InmuebleRepository;
 
 /**
  * InmuebleService

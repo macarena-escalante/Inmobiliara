@@ -1,4 +1,4 @@
-package ar.com.ada.api.inmobiliaria.Repo.instalacion;
+package ar.com.ada.api.inmobiliaria.repositorys.instalacion;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

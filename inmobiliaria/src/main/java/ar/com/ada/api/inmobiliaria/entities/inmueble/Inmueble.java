@@ -1,11 +1,8 @@
 package ar.com.ada.api.inmobiliaria.entities.inmueble;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import ar.com.ada.api.inmobiliaria.entities.amenitie.Amenitie;
 import ar.com.ada.api.inmobiliaria.entities.caracteristica.Caracteristica;
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locador;
@@ -61,6 +59,9 @@ public class Inmueble {
     @JoinTable(name = "caracteristica_por_inmueble", joinColumns = @JoinColumn(name = "inmueble_id"), 
     inverseJoinColumns = @JoinColumn(name = "caracteristica_id"))
     private List<Caracteristica> caracteristicas = new ArrayList<Caracteristica>();
+
+    @ManyToMany(mappedBy = "inmuebles")
+    private List<Amenitie> amenities= new ArrayList<Amenitie>();
 
     /*
      * @OneToMany(mappedBy = "Inmueble", cascade = CascadeType.ALL)

@@ -1,11 +1,15 @@
 package ar.com.ada.api.inmobiliaria.entities.caracteristica;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 
@@ -21,7 +25,7 @@ public class Caracteristica {
     private int caracteristicaId;
 
     @ManyToMany(mappedBy = "caracteristicas")
-   private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
+    private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
 
     private String descripcion;
 
