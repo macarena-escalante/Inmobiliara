@@ -15,10 +15,5 @@ import ar.com.ada.api.inmobiliaria.repositorys.inmueble.InmuebleRepository;
 public class InmuebleService {
 
     @Autowired
-    InmuebleRepository inmuebleRepo;
-
-     public List<Inmueble> getInmuebles() {
-
-        return inmuebleRepo.findAll();
-    }
+    InmobiliariaRepository repoInmobiliaria;
 }
