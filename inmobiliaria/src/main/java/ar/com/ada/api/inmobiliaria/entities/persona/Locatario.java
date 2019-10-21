@@ -85,5 +85,16 @@ public class Locatario {
         this.dni = dni;
     }
 
+    public Locatario(String nombre, String dni, int telefono, String email, String direccion) {
+        this.nombre = nombre;
+        this.dni = dni;
+        this.telefono = telefono;
+        this.email = email;
+        this.direccion = direccion;
+    }
+
+    public Locatario() {
+    }
+
 
 }

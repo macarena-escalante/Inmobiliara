@@ -5,5 +5,7 @@ package ar.com.ada.api.inmobiliaria.entities.operacion;
  */
 public class Alquiler extends Operacion{
 
-    
+    public Alquiler() {
+    }
+
 }

@@ -1,8 +1,12 @@
 package ar.com.ada.api.inmobiliaria.entities.operacion;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.*;
+
+import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
+import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
 
 /**
  * Operacion
@@ -16,16 +20,17 @@ public class Operacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int operacionId;
 
+    private BigDecimal monto;
+
     private Date fecha;
 
     private String tipo;
 
     @Column(name= "inmueble_id")
-    private int inmuebleId;
+    private Inmueble inmueble;
 
-    
     @Column(name= "usuario_id")
-    private int usuarioId;
+    private Usuario usuario;
 
     public int getOperacionId() {
         return operacionId;
@@ -51,20 +56,37 @@ public class Operacion {
         this.tipo = tipo;
     }
 
-    public int getInmuebleId() {
-        return inmuebleId;
+    public BigDecimal getMonto() {
+        return monto;
     }
 
-    public void setInmuebleId(int inmuebleId) {
-        this.inmuebleId = inmuebleId;
+    public void setMonto(BigDecimal monto) {
+        this.monto = monto;
     }
 
-    public int getUsuarioId() {
-        return usuarioId;
+    public Operacion(BigDecimal monto, Date fecha, String tipo) {
+        this.monto = monto;
+        this.fecha = fecha;
+        this.tipo = tipo;
     }
 
-    public void setUsuarioId(int usuarioId) {
-        this.usuarioId = usuarioId;
+    public Operacion() {
+    }
+
+    public Inmueble getInmueble() {
+        return inmueble;
+    }
+
+    public void setInmueble(Inmueble inmueble) {
+        this.inmueble = inmueble;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     
 }

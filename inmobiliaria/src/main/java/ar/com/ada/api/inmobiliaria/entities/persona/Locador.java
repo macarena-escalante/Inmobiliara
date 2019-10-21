@@ -83,4 +83,17 @@ public class Locador {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    public Locador(String nombre, String dni, int telefono, String email, String direccion) {
+        this.nombre = nombre;
+        this.dni = dni;
+        this.telefono = telefono;
+        this.email = email;
+        this.direccion = direccion;
+    }
+
+    public Locador() {
+    }
+
+    
 }
