@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
 import ar.com.ada.api.inmobiliaria.models.request.LocadorRequest;
 import ar.com.ada.api.inmobiliaria.models.request.LocatarioRequest;
-import ar.com.ada.api.inmobiliaria.models.response.Response;
+import ar.com.ada.api.inmobiliaria.models.response.PostResponse;
 import ar.com.ada.api.inmobiliaria.services.persona.LocatarioService;
 
 /**
@@ -27,9 +27,9 @@ public class LocatarioController {
     LocatarioService locatarioService;
 
     @PostMapping("/locatarios")
-    public Response postNewLocatario(@RequestBody LocadorRequest req) {
+    public PostResponse postNewLocatario(@RequestBody LocadorRequest req) {
 
-        Response r = new Response();
+        PostResponse r = new PostResponse();
         
         locatarioService.registrarLocatario(req.nombre, req.dni, req.email, req.telefono, req.direccion);
 
@@ -55,9 +55,9 @@ public class LocatarioController {
     }
 
     @PutMapping("/locatarios/{dni}")
-    public Response putActualizarDatosLocatario(@PathVariable String dni, @RequestBody LocatarioRequest req) {
+    public PostResponse putActualizarDatosLocatario(@PathVariable String dni, @RequestBody LocatarioRequest req) {
 
-        Response r = new Response();
+        PostResponse r = new PostResponse();
 
         locatarioService.actualizarLocatarioPorDni(dni, req.email, req.telefono, req.direccion);
 
