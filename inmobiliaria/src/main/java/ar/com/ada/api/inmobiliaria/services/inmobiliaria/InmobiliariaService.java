@@ -1,5 +1,7 @@
 package ar.com.ada.api.inmobiliaria.services.inmobiliaria;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +23,13 @@ public class InmobiliariaService {
         return repoInmobiliaria.findById(id);
     }
 
-   public void save(Inmobiliaria i) {
+    public void save(Inmobiliaria i) {
         repoInmobiliaria.save(i);
+    }
+
+    public List<Inmobiliaria> getInmobiliarias() {
+
+        return repoInmobiliaria.findAll();
     }
 
     public Inmobiliaria crearInmobiliaria (String nombre, String direccion, String cuit, String email){
@@ -36,4 +43,15 @@ public class InmobiliariaService {
         repoInmobiliaria.save(i);
         return i;
     }
+
+    public Inmobiliaria actualizarInmobiliaria(int id, String direccion){
+        Inmobiliaria i = this.buscarPorId(id);
+
+        i.setDireccion(direccion);
+
+        repoInmobiliaria.save(i);
+        return i;
+
+    }
+
 }

@@ -9,4 +9,5 @@ public class InmobiliariaRequest {
     public String direccion;
     public String cuit;
     public String email;
+
 }

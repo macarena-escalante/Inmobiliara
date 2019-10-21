@@ -1,9 +1,12 @@
 package ar.com.ada.api.inmobiliaria.controllers.inmobiliaria;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,5 +42,27 @@ public class InmobiliariaController {
         Inmobiliaria i = inmobiliariaService.buscarPorId(id);
 
         return i;
+    }
+
+    @GetMapping("inmobiliarias")
+    public List<Inmobiliaria> getInmobiliarias()
+    {
+        List<Inmobiliaria> inmobiliarias = inmobiliariaService.getInmobiliarias();
+        
+        return inmobiliarias;
+    }
+
+    @PutMapping("/inmobiliarias/{id}")
+    public PostResponse actualizaEmpleado(@PathVariable int id, @RequestBody InmobiliariaRequest req){
+
+        PostResponse p = new PostResponse();
+        
+        inmobiliariaService.actualizarInmobiliaria(id, req.direccion);
+        
+
+        p.isOk = true;
+        p.message = "La inmobiliaria ha sido actualizada.";
+
+        return p;
     }
 }
