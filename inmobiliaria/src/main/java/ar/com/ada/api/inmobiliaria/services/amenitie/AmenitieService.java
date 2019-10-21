@@ -1,6 +1,9 @@
 package ar.com.ada.api.inmobiliaria.services.amenitie;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import ar.com.ada.api.inmobiliaria.Repo.amenitie.AmenitieRepository;
 
 /**
  * AmenitieService
@@ -8,5 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AmenitieService {
 
+    @Autowired
+    AmenitieRepository repoAmenitie;
     
 }
