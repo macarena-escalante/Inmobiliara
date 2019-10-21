@@ -55,7 +55,7 @@ public class LocatarioService {
         return l;
     }
 
-    public Locatario actualizarLocadorPorDni(String dni, String email, int telefono, String direccion){
+    public Locatario actualizarLocatarioPorDni(String dni, String email, int telefono, String direccion){
 
         Locatario l = buscarLocatarioPorDni(dni);
         l.setEmail(email);
