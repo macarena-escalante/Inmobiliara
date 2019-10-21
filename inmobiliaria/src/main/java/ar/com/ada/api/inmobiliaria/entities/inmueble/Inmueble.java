@@ -45,6 +45,9 @@ public class Inmueble {
 
     private String direccion;
 
+    @Column(name= "tipo_inmueble")
+    private String tipoInmueble;
+
     @ManyToOne
     @JoinColumn(name = "inmobiliaria_id", referencedColumnName = "inmobiliaria_id")
     private Inmobiliaria inmobiliaria;
@@ -147,6 +150,14 @@ public class Inmueble {
 
     public void setLocador(Locador locador) {
         this.locador = locador;
+    }
+
+    public String getTipoInmueble() {
+        return tipoInmueble;
+    }
+
+    public void setTipoInmueble(String tipoInmueble) {
+        this.tipoInmueble = tipoInmueble;
     }
 
 }

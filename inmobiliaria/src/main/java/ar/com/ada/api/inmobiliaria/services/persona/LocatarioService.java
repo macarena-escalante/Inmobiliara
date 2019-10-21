@@ -13,4 +13,6 @@ public class LocatarioService {
 
     @Autowired
     LocatarioRepository repoLocatario;
+
+    
 }
