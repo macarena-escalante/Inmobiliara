@@ -22,8 +22,28 @@ public class InmuebleController {
     @Autowired
     InmuebleService inmuebleService;
 
-    @GetMapping("/inmuebles")
-    public List<Inmueble> getInmuebles() {
+        @PostMapping("inmuebles/inmobiliarias")
+        public PostResponse postRegistroInmuebleConInmobiliaria(@RequestBody InmuebleRequest req) {
+
+        PostResponse r = new PostResponse();
+        
+        inmuebleService.registrarInmuebleConInmobiliaria(req.direccion, req.precio, req.estado, req.superficie, req.antiguedad, req.id, req.tipoInmueble);
+
+        return r;
+    }
+
+        @PostMapping("inmuebles/locadores")
+        public PostResponse postRegistroInmuebleConLocadores(@RequestBody InmuebleRequest req) {
+
+        PostResponse r = new PostResponse();
+        
+        inmuebleService.registrarInmuebleConInmobiliaria(req.direccion, req.precio, req.estado, req.superficie, req.antiguedad, req.id, req.tipoInmueble);
+
+        return r;
+    }
+
+        @GetMapping("/inmuebles")
+        public List<Inmueble> getInmuebles() {
 
         List<Inmueble> listaInmuebles = inmuebleService.getInmuebles();
 

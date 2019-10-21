@@ -12,6 +12,7 @@ import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
 import ar.com.ada.api.inmobiliaria.repositorys.inmueble.InmuebleRepository;
 import ar.com.ada.api.inmobiliaria.services.inmobiliaria.InmobiliariaService;
+import ar.com.ada.api.inmobiliaria.services.persona.LocadorService;
 
 /**
  * InmuebleService
@@ -25,6 +26,9 @@ public class InmuebleService {
     @Autowired
     InmobiliariaService inmobiliariaService;
 
+    @Autowired
+    LocadorService locadorService;
+
     public List<Inmueble> getInmuebles() {
 
         return repoInmueble.findAll();
@@ -34,14 +38,34 @@ public class InmuebleService {
             double superficie, int antiguedad, int inmobiliariaId, String tipoInmueble) {
 
         Inmueble inmueble = new Inmueble();
-        Inmobiliaria inmobiliaria = new Inmobiliaria();
+        Inmobiliaria inmobiliaria = inmobiliariaService.buscarPorId(inmobiliariaId);
 
         inmueble.setDireccion(direccion);
         inmueble.setPrecio(precio);
         inmueble.setEstado(estado);
         inmueble.setSuperficie(superficie);
         inmueble.setAntiguedad(antiguedad);
-       
+        inmueble.setInmobiliaria(inmobiliaria);
+        inmueble.setTipoInmueble(tipoInmueble);
+
+        repoInmueble.save(inmueble);
+
+        return inmueble;
+
+    }
+
+    public Inmueble registrarInmuebleConLocador(String direccion, BigDecimal precio, String estado,
+            double superficie, int antiguedad, int locadorId, String tipoInmueble) {
+
+        Inmueble inmueble = new Inmueble();
+        Inmobiliaria inmobiliaria = inmobiliariaService.buscarPorId(inmobiliariaId);
+
+        inmueble.setDireccion(direccion);
+        inmueble.setPrecio(precio);
+        inmueble.setEstado(estado);
+        inmueble.setSuperficie(superficie);
+        inmueble.setAntiguedad(antiguedad);
+        inmueble.setInmobiliaria(inmobiliaria);
         inmueble.setTipoInmueble(tipoInmueble);
 
         repoInmueble.save(inmueble);

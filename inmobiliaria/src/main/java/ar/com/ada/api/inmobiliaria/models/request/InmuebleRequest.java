@@ -7,15 +7,17 @@ import java.math.BigDecimal;
  */
 public class InmuebleRequest {
 
-    String direccion;
+    public String direccion;
 
-    BigDecimal precio;
+    public BigDecimal precio;
 
-    String estado;
+    public String estado;
 
-    double superficie;
-    
-    int antiguedad;
+    public double superficie;
+
+    public int antiguedad;
    
-    String tipoInmueble;
+    public String tipoInmueble;
+
+    public int id;
 }

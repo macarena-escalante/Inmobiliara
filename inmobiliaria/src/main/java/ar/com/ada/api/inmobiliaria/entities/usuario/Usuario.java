@@ -25,7 +25,8 @@ public class Usuario {
     private int usuarioId;
 
     private String email;
-    
+    private String password;
+
     @OneToOne
     @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
     private Locatario locatario;
@@ -58,6 +59,36 @@ public class Usuario {
         this.locatario = locatario;
     }
 
-  
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Usuario(int usuarioId, String email, String password, Locatario locatario, Inmobiliaria inmobiliaria) {
+        this.usuarioId = usuarioId;
+        this.email = email;
+        this.password = password;
+        this.locatario = locatario;
+        this.inmobiliaria = inmobiliaria;
+    }
+
+    public Usuario() {
+
+    }
+
+    public Usuario(String password) {
+        this.password = password;
+    }
+
+    public Inmobiliaria getInmobiliaria() {
+        return inmobiliaria;
+    }
+
+    public void setInmobiliaria(Inmobiliaria inmobiliaria) {
+        this.inmobiliaria = inmobiliaria;
+    }
 
 }
