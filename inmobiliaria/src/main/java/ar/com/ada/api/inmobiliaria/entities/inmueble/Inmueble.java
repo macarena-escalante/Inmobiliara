@@ -1,16 +1,25 @@
 package ar.com.ada.api.inmobiliaria.entities.inmueble;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.*;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import ar.com.ada.api.inmobiliaria.entities.caracteristica.Caracteristica;
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
-import ar.com.ada.api.inmobiliaria.entities.instalacion.Instalacion;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locador;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
 
@@ -47,15 +56,18 @@ public class Inmueble {
     @ManyToOne
     @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
     private Locador locador;
-/*
-    @OneToMany(mappedBy = "Inmueble", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+
+    @ManyToMany
+    @JoinTable(name = "caracteristica_por_inmueble", joinColumns = @JoinColumn(name = "inmueble_id"), 
+    inverseJoinColumns = @JoinColumn(name = "caracteristica_id"))
     private List<Caracteristica> caracteristicas = new ArrayList<Caracteristica>();
 
-    @OneToMany(mappedBy = "Inmueble", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Instalacion> instalaciones = new ArrayList<Instalacion>();
-*/
+    /*
+     * @OneToMany(mappedBy = "Inmueble", cascade = CascadeType.ALL)
+     * 
+     * @LazyCollection(LazyCollectionOption.FALSE) private List<Instalacion>
+     * instalaciones = new ArrayList<Instalacion>();
+     */
     public int getInmuebleId() {
         return inmuebleId;
     }
@@ -108,24 +120,18 @@ public class Inmueble {
      * 
      * public void setInmobiliaria(Inmobiliaria inmobiliaria) { this.inmobiliaria =
      * inmobiliaria; }
-     
-
-    public List<Caracteristica> getCaracteristicas() {
-        return caracteristicas;
-    }
-
-    public void setCaracteristicas(List<Caracteristica> caracteristicas) {
-        this.caracteristicas = caracteristicas;
-    }
-
-    public List<Instalacion> getInstalaciones() {
-        return instalaciones;
-    }
-
-    public void setInstalaciones(List<Instalacion> instalaciones) {
-        this.instalaciones = instalaciones;
-    }
-    */
+     * 
+     * 
+     * public List<Caracteristica> getCaracteristicas() { return caracteristicas; }
+     * 
+     * public void setCaracteristicas(List<Caracteristica> caracteristicas) {
+     * this.caracteristicas = caracteristicas; }
+     * 
+     * public List<Instalacion> getInstalaciones() { return instalaciones; }
+     * 
+     * public void setInstalaciones(List<Instalacion> instalaciones) {
+     * this.instalaciones = instalaciones; }
+     */
 
     public Locatario getLocatario() {
         return locatario;
