@@ -27,10 +27,10 @@ public class Operacion {
     private String tipo;
 
     @Column(name= "inmueble_id")
-    private Inmueble inmuebleId;
+    private Inmueble inmueble;
 
     @Column(name= "usuario_id")
-    private Usuario usuarioId;
+    private Usuario usuario;
 
     public int getOperacionId() {
         return operacionId;
@@ -56,22 +56,6 @@ public class Operacion {
         this.tipo = tipo;
     }
 
-    public int getInmuebleId() {
-        return inmuebleId;
-    }
-
-    public void setInmuebleId(int inmuebleId) {
-        this.inmuebleId = inmuebleId;
-    }
-
-    public int getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(int usuarioId) {
-        this.usuarioId = usuarioId;
-    }
-
     public BigDecimal getMonto() {
         return monto;
     }
@@ -87,6 +71,22 @@ public class Operacion {
     }
 
     public Operacion() {
+    }
+
+    public Inmueble getInmueble() {
+        return inmueble;
+    }
+
+    public void setInmueble(Inmueble inmueble) {
+        this.inmueble = inmueble;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     
 }

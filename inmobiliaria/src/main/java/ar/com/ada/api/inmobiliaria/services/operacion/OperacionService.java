@@ -34,6 +34,8 @@ public class OperacionService {
        
         Inmueble i = inmuebleService.buscarInmueblePorId(inmuebleId);
 
+        Usuario u = usuarioService.buscarPorId(usuarioId);
+
         Operacion o = new Operacion();
         o.setMonto(monto);
         o.setTipo(tipo);
