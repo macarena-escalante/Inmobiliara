@@ -23,19 +23,22 @@ public class UsuarioService {
     @Autowired
     InmobiliariaService inmobiliariaService; 
 
-    public void agregarUsuarioInmobiliaria(Inmobiliaria i, String password) {
-
-        Usuario u = new Usuario();
-        u.setEmail(i.getEmail());
-        u.setPassword(Crypto.encrypt(password, u.getEmail()));
-
-        i.setUsuario(u);
-        inmobiliariaService.save(i);
-        i.getUsuario();
-
+    public void save(Usuario u) {
+        repoUsuario.save(u);
     }
 
+    public Usuario agregarUsuarioInmobiliaria(Inmobiliaria inmobiliaria, String password, String email) {
 
+        Usuario u = new Usuario();
+        
+        u.setEmail(email);
+        u.setPassword(Crypto.encrypt(password, u.getEmail()));
+        u.setInmobiliaria(inmobiliaria);
+                                                                              //VER CON ARI
+        repoUsuario.save(u);
+        return u;
+
+    }
 
     public List<Usuario> getUsuarios() {
 
