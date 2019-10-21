@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -28,9 +26,7 @@ public class Amenitie {
     private int amenitieId;
 
 
-    @ManyToMany
-    @JoinTable(name = "amenitie_por_inmueble", joinColumns = @JoinColumn(name = "amenetie_id"), 
-    inverseJoinColumns = @JoinColumn(name = "inmueble_id"))
+     @ManyToMany(mappedBy = "amenities")
     private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
     
     private String descripcion;

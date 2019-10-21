@@ -1,5 +1,6 @@
 package ar.com.ada.api.inmobiliaria.entities.inmueble;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import ar.com.ada.api.inmobiliaria.entities.amenitie.Amenitie;
 import ar.com.ada.api.inmobiliaria.entities.caracteristica.Caracteristica;
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locador;
@@ -33,7 +33,7 @@ public class Inmueble {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int inmuebleId;
 
-    private double precio;
+    private BigDecimal precio;
 
     private String estado;
 
@@ -63,9 +63,14 @@ public class Inmueble {
     inverseJoinColumns = @JoinColumn(name = "caracteristica_id"))
     private List<Caracteristica> caracteristicas = new ArrayList<Caracteristica>();
 
-    @ManyToMany(mappedBy = "inmuebles")
-    private List<Amenitie> amenities= new ArrayList<Amenitie>();
+    @ManyToMany
+    @JoinTable(name = "amenitie_por_inmueble", joinColumns = @JoinColumn(name = "inmueble_id"), 
+    inverseJoinColumns = @JoinColumn(name = "amenitie_id"))
+    private List<Caracteristica> amenities = new ArrayList<Caracteristica>();
 
+   /* @ManyToMany(mappedBy = "inmuebles")
+    private List<Amenitie> amenities= new ArrayList<Amenitie>();
+*/
     /*
      * @OneToMany(mappedBy = "Inmueble", cascade = CascadeType.ALL)
      * 
@@ -80,12 +85,8 @@ public class Inmueble {
         this.inmuebleId = inmuebleId;
     }
 
-    public double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
     }
 
     public String getEstado() {
@@ -161,4 +162,32 @@ public class Inmueble {
         this.tipoInmueble = tipoInmueble;
     }
 
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
+    }
+
+    public Inmobiliaria getInmobiliaria() {
+        return inmobiliaria;
+    }
+
+    public void setInmobiliaria(Inmobiliaria inmobiliaria) {
+        this.inmobiliaria = inmobiliaria;
+    }
+
+    public List<Caracteristica> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(List<Caracteristica> caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
+/*
+    public List<Amenitie> getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(List<Amenitie> amenities) {
+        this.amenities = amenities;
+    }
+*/
 }
