@@ -9,7 +9,7 @@ import ar.com.ada.api.inmobiliaria.entities.persona.Locador;
  * LocadorRepository
  */
 @Repository
-public interface LocadorRepository extends JpaRepository < Locador , Integer>{
+public interface LocadorRepository extends JpaRepository<Locador, Integer>{
 
-    
+    Locador findByDni(String dni);
 }
