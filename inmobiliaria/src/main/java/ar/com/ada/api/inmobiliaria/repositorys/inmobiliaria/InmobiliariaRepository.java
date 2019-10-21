@@ -11,5 +11,5 @@ import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
 @Repository
 public interface InmobiliariaRepository extends JpaRepository <Inmobiliaria, Integer>{ 
 
-    
+    Inmobiliaria findById (int id);
 }

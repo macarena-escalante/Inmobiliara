@@ -17,7 +17,7 @@ public class InmuebleController {
     @Autowired
     InmuebleService inmuebleService;
 
-    
+    /*
         @GetMapping("/inmuebles")
         public List<Inmueble> getInmuebles() {
 
@@ -26,5 +26,5 @@ public class InmuebleController {
         return listaInmuebles;
 
         
-    }  
+    }  */
 }
