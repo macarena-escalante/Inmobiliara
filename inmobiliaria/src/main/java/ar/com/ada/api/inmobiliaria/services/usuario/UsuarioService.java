@@ -1,5 +1,8 @@
 package ar.com.ada.api.inmobiliaria.services.usuario;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +26,8 @@ public class UsuarioService {
     public void agregarUsuarioInmobiliaria(Inmobiliaria i, String password) {
 
         Usuario u = new Usuario();
-        u.setGetEmail(i.getEmail());
-        u.setUserEmail(i.getEmail());
-        u.setPassword(Crypto.encrypt(password, u.getUserEmail()));
+        u.setEmail(i.getEmail());
+        u.setPassword(Crypto.encrypt(password, u.getEmail()));
 
         i.setUsuario(u);
         inmobiliariaService.save(i);
@@ -33,34 +35,25 @@ public class UsuarioService {
 
     }
 
-    // repo.save(u);
+
 
     public List<Usuario> getUsuarios() {
 
-        return repo.findAll();
+        return repoUsuario.findAll();
     }
 
     public Usuario buscarPorId(int id) {
 
-        Optional<Usuario> u = repo.findById(id);
+        Optional<Usuario> u = repoUsuario.findById(id);
 
         if (u.isPresent())
             return u.get();
         return null;
     }
 
-    public Usuario buscarPorUsername (String username) {
-       return repo.findByUsername(username);
+    public Usuario buscarPorEmail (String email) {
+       return repoUsuario.findByEmail(email);
             
-    }
-
-    public Usuario buscarPorEmail (String userEmail) {
-        return  repo.findByuserEmail(userEmail); 
-
-    }
-
-    public void buscar(){
-
     }
 
 

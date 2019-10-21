@@ -83,4 +83,12 @@ public class Usuario {
         this.password = password;
     }
 
+    public Inmobiliaria getInmobiliaria() {
+        return inmobiliaria;
+    }
+
+    public void setInmobiliaria(Inmobiliaria inmobiliaria) {
+        this.inmobiliaria = inmobiliaria;
+    }
+
 }
