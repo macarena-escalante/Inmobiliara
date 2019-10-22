@@ -53,4 +53,15 @@ public class InmobiliariaService {
 
     }
 
+    public Inmobiliaria daDeBajaInmobiliaria(int id, String nombre, String direccion, String cuit, String email) {
+
+        Inmobiliaria i = this.buscarPorId(id);
+        i.setNombre(nombre);
+        i.setDireccion(direccion);
+        i.setCuit(cuit);
+        i.setEmail(email);
+
+        repoInmobiliaria.save(i);
+        return i;
+    }
 }

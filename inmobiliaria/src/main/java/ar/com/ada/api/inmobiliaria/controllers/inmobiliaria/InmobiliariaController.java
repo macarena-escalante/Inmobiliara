@@ -71,7 +71,7 @@ public class InmobiliariaController {
     public PostResponse deleteInmobiliaria (@PathVariable int id){
         PostResponse p = new PostResponse();
         
-        inmobiliariaService.buscarPorId(id);
+        inmobiliariaService.daDeBajaInmobiliaria(id, "0", "0", "0", "0");
 
         p.isOk = true;
         p.message = "La inmobiliaria ha sido dada de baja.";
