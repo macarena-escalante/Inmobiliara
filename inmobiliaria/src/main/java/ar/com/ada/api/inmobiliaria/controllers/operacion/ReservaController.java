@@ -11,7 +11,7 @@ import ar.com.ada.api.inmobiliaria.services.operacion.ReservaService;
 @RestController
 public class ReservaController {
 
-    @Autowired
-    ReservaService reservaService;
+    //@Autowired
+    //ReservaService reservaService;
     
 }

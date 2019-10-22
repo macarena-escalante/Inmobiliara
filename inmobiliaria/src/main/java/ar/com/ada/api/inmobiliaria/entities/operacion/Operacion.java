@@ -74,15 +74,6 @@ public class Operacion {
         this.monto = monto;
     }
 
-    public Operacion(BigDecimal monto, Date fecha, String tipo) {
-        this.monto = monto;
-        this.fecha = fecha;
-        this.tipo = tipo;
-    }
-
-    public Operacion() {
-    }
-
     public Inmueble getInmueble() {
         return inmueble;
     }
@@ -97,6 +88,18 @@ public class Operacion {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Operacion(int operacionId, BigDecimal monto, Date fecha, String tipo, Usuario usuario, Inmueble inmueble) {
+        this.operacionId = operacionId;
+        this.monto = monto;
+        this.fecha = fecha;
+        this.tipo = tipo;
+        this.usuario = usuario;
+        this.inmueble = inmueble;
+    }
+
+    public Operacion() {
     }
 
 }

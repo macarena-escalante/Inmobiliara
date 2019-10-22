@@ -2,6 +2,7 @@ package ar.com.ada.api.inmobiliaria.services.operacion;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.operacion.Alquiler;
 import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
-import ar.com.ada.api.inmobiliaria.repositorys.operacion.OperacionRepository;
+import ar.com.ada.api.inmobiliaria.repositorys.operacion.AlquilerRepository;
 
 /**
  * AlquilerService
@@ -18,7 +19,7 @@ import ar.com.ada.api.inmobiliaria.repositorys.operacion.OperacionRepository;
 public class AlquilerService {
 
     @Autowired
-    OperacionRepository repoOperacion;
+    AlquilerRepository repoAlquiler;
 
     public Alquiler agregarAlquiler(BigDecimal monto, Inmueble inmueble, Usuario usuario){
 
@@ -29,13 +30,17 @@ public class AlquilerService {
         a.setInmueble(inmueble);
         a.setUsuario(usuario);
 
-        repoOperacion.save(a);
+        repoAlquiler.save(a);
         return a;
     }
+    
     public Alquiler buscarAlquilerPorId(int id) {
 
-        Alquiler a = repoOperacion.findByIdAlquiler(id);
-        return a;
+        Optional<Alquiler> a = repoAlquiler.findById(id);
+
+        if (a.isPresent())
+            return a.get();
+        return null;
     }
 
     public Alquiler modificarAlquilerPorId(int id, BigDecimal monto, Inmueble inmueble){
@@ -45,7 +50,7 @@ public class AlquilerService {
         a.setFecha(new Date());
         a.setInmueble(inmueble);
 
-        repoOperacion.save(a);
+        repoAlquiler.save(a);
         return a;
     }
 
@@ -57,7 +62,7 @@ public class AlquilerService {
         a.setInmueble(inmueble);
         a.setUsuario(usuario);
 
-        repoOperacion.save(a);
+        repoAlquiler.save(a);
 
         return a;
     }

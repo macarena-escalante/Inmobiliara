@@ -2,6 +2,7 @@ package ar.com.ada.api.inmobiliaria.services.operacion;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.operacion.Reserva;
 import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
-import ar.com.ada.api.inmobiliaria.repositorys.operacion.OperacionRepository;
+import ar.com.ada.api.inmobiliaria.repositorys.operacion.ReservaRepository;
 
 /**
  * ReservaService
@@ -18,7 +19,7 @@ import ar.com.ada.api.inmobiliaria.repositorys.operacion.OperacionRepository;
 public class ReservaService {
 
     @Autowired
-    OperacionRepository repoOperacion;
+    ReservaRepository repoReserva;
 
     public Reserva agregarReserva(BigDecimal monto, Inmueble inmueble, Usuario usuario){
 
@@ -29,14 +30,17 @@ public class ReservaService {
         r.setInmueble(inmueble);
         r.setUsuario(usuario);
 
-        repoOperacion.save(r);
+        repoReserva.save(r);
         return r;
     }
 
     public Reserva buscarReservaPorId(int id) {
+        
+        Optional<Reserva> r = repoReserva.findById(id);
 
-        Reserva r = repoOperacion.findByIdReserva(id);
-        return r;
+        if (r.isPresent())
+            return r.get();
+        return null;
     }
 
     public Reserva modificarReservaPorId(int id, BigDecimal monto, Inmueble inmueble){
@@ -46,7 +50,7 @@ public class ReservaService {
         r.setFecha(new Date());
         r.setInmueble(inmueble);
 
-        repoOperacion.save(r);
+        repoReserva.save(r);
         return r;
     }
 
@@ -58,7 +62,7 @@ public class ReservaService {
         r.setInmueble(inmueble);
         r.setUsuario(usuario);
 
-        repoOperacion.save(r);
+        repoReserva.save(r);
 
         return r;
     }

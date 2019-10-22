@@ -3,12 +3,13 @@ package ar.com.ada.api.inmobiliaria.repositorys.operacion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import ar.com.ada.api.inmobiliaria.entities.operacion.Operacion;
+import ar.com.ada.api.inmobiliaria.entities.operacion.Alquiler;
 
 /**
- * OperacionRepository
+ * AlquilerRepository
  */
 @Repository
-public interface OperacionRepository extends JpaRepository<Operacion , Integer> {
+public interface AlquilerRepository extends JpaRepository<Alquiler, Integer> {
 
+    
 }

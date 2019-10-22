@@ -11,7 +11,7 @@ import ar.com.ada.api.inmobiliaria.services.operacion.AlquilerService;
 @RestController
 public class AlquilerController {
 
-    @Autowired
-    AlquilerService alquilerService;
+    //@Autowired
+    //AlquilerService alquilerService;
     
 }
