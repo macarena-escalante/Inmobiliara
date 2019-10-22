@@ -9,10 +9,7 @@ import org.springframework.stereotype.Service;
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.operacion.Operacion;
 import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
-import ar.com.ada.api.inmobiliaria.repositorys.inmueble.InmuebleRepository;
 import ar.com.ada.api.inmobiliaria.repositorys.operacion.OperacionRepository;
-import ar.com.ada.api.inmobiliaria.repositorys.usuario.UsuarioRepository;
-import ar.com.ada.api.inmobiliaria.services.inmobiliaria.InmobiliariaService;
 import ar.com.ada.api.inmobiliaria.services.inmueble.InmuebleService;
 import ar.com.ada.api.inmobiliaria.services.usuario.UsuarioService;
 
@@ -31,7 +28,7 @@ public class OperacionService {
     @Autowired
     UsuarioService usuarioService;
 
-    public Operacion agregarOperacion(BigDecimal monto, String tipo, Date fecha, int inmuebleId, int usuarioId){
+    public void agregarOperacion(BigDecimal monto, String tipo, int inmuebleId, int usuarioId){
        
         Inmueble i = inmuebleService.buscarInmueblePorId(inmuebleId);
 
@@ -45,8 +42,6 @@ public class OperacionService {
         o.setUsuario(u);
 
         repoOperacion.save(o);
-
-        return o;
     }
-    
+
 }
