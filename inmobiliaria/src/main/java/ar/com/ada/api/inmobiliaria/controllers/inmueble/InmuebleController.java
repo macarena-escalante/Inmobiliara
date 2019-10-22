@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
+import ar.com.ada.api.inmobiliaria.entities.operacion.Operacion;
 import ar.com.ada.api.inmobiliaria.models.request.InmuebleRequest;
-import ar.com.ada.api.inmobiliaria.models.response.InmuebleResponse;
+import ar.com.ada.api.inmobiliaria.models.response.AlquiladoResponse;
+import ar.com.ada.api.inmobiliaria.models.response.DisponibleResponse;
 import ar.com.ada.api.inmobiliaria.models.response.PostResponse;
+import ar.com.ada.api.inmobiliaria.models.response.ReservadoResponse;
 import ar.com.ada.api.inmobiliaria.services.inmueble.InmuebleService;
 
 /**
@@ -65,15 +68,16 @@ public class InmuebleController {
     }
 
     @GetMapping("/inmuebles/alquileres")
-    public List<InmuebleResponse> getInmueblesByAlquiler() {
-        List<InmuebleResponse> inmueblecitos = new ArrayList<InmuebleResponse>();
+    public List<AlquiladoResponse> getInmueblesByAlquiler() {
+        List<AlquiladoResponse> inmueblecitos = new ArrayList<AlquiladoResponse>();
 
         for (Inmueble t : inmuebleService.getInmuebles()) {
             if (t.getEstado().equals("alquilado")) {
-                InmuebleResponse i = new InmuebleResponse();
+                AlquiladoResponse i = new AlquiladoResponse();
                 i.direccion= t.getDireccion();
                 i.locadorId= t.getLocador().getLocadorId();
                 i.locatarioId= t.getLocatario().getLocatarioId();
+                i.tipo= t.getTipoInmueble();
                 i.message= "ALQUILADO";
 
                 inmueblecitos.add(i);
@@ -84,4 +88,66 @@ public class InmuebleController {
         return inmueblecitos;
     }
 
+    @GetMapping("/inmuebles/reservas")
+    public List<ReservadoResponse> getInmueblesByReserva() {
+        List<ReservadoResponse> inmueblecitos = new ArrayList<ReservadoResponse>();
+        Operacion o = new Operacion();
+
+        for (Inmueble t : inmuebleService.getInmuebles()) {
+            if (t.getEstado().equals("reservado")) {
+                ReservadoResponse i = new ReservadoResponse();
+                i.direccion= t.getDireccion();
+                i.locadorId= t.getLocador().getLocadorId();
+                i.tipo= t.getTipoInmueble();
+                i.monto= o.getMonto();
+                i.message= "RESERVADO";
+
+                inmueblecitos.add(i);
+            }
+            
+        }
+
+        return inmueblecitos;
+    }
+
+    @GetMapping("/inmuebles/ventas")
+    public List<AlquiladoResponse> getInmueblesByVenta() {
+        List<AlquiladoResponse> inmueblecitos = new ArrayList<AlquiladoResponse>();
+
+        for (Inmueble t : inmuebleService.getInmuebles()) {
+            if (t.getEstado().equals("vendido")) {
+                AlquiladoResponse i = new AlquiladoResponse();
+                i.direccion= t.getDireccion();
+                i.locadorId= t.getLocador().getLocadorId();
+                i.locatarioId= t.getLocatario().getLocatarioId();
+                i.tipo= t.getTipoInmueble();
+                i.message= "VENDIDO";
+
+                inmueblecitos.add(i);
+            }
+            
+        }
+
+        return inmueblecitos;
+    }
+
+    @GetMapping("/inmuebles/disponibles")
+    public List<DisponibleResponse> getInmueblesBydisponible() {
+        List<DisponibleResponse> inmueblecitos = new ArrayList<DisponibleResponse>();
+
+        for (Inmueble t : inmuebleService.getInmuebles()) {
+            if (t.getEstado().equals("disponible")) {
+                DisponibleResponse i = new DisponibleResponse();
+                i.direccion= t.getDireccion();
+                i.locadorId= t.getLocador().getLocadorId();
+                i.tipo= t.getTipoInmueble();
+                i.message= "DISPONIBLE";
+
+                inmueblecitos.add(i);
+            }
+            
+        }
+
+        return inmueblecitos;
+    }
 }
