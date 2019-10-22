@@ -39,4 +39,40 @@ public class OperacionController {
         return r;
     }
 
+    @PostMapping("/operaciones/reservas")
+    public PostResponse postReserva(@RequestBody OperacionRequest req){
+        PostResponse r = new PostResponse();
+
+        operacionService.operacionReserva(req.monto,req.inmuebleId,req.usuarioId);
+        r.message=("Reserva realizada con éxito");
+
+        return r;
+
+    }
+
+    @PostMapping("/operaciones/alquileres")
+    public PostResponse postAlquiler(@RequestBody OperacionRequest req){
+        PostResponse r = new PostResponse();
+
+        operacionService.operacionAlquiler(req.monto,req.inmuebleId,req.usuarioId);
+        r.message=("Alquiler realizado con éxito");
+
+        return r;
+
+    }
+/*
+    @PostMapping("/operaciones/reservas/alquileres")
+    public PostResponse postAlquilerConReserve(@RequestBody OperacionRequest req){
+        PostResponse r = new PostResponse();
+
+        operacionService.operacionAlquilerConReserva(req.monto,req.inmuebleId,req.usuarioId);
+        
+        r.message=("Alquiler realizada con éxito");
+
+        return r;
+
+    }
+    */
+
+
 }
