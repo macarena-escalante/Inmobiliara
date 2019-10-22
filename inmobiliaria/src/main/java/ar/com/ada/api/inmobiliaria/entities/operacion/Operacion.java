@@ -3,7 +3,14 @@ package ar.com.ada.api.inmobiliaria.entities.operacion;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
@@ -12,7 +19,7 @@ import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
  * Operacion
  */
 @Entity
-@Table(name= "operacion")
+@Table(name = "operacion")
 public class Operacion {
 
     @Id
@@ -24,13 +31,16 @@ public class Operacion {
 
     private Date fecha;
 
+    @Column(name = "tipo_de_operacion")
     private String tipo;
 
-    @Column(name= "inmueble_id")
-    private Inmueble inmueble;
-
-    @Column(name= "usuario_id")
+    @OneToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
     private Usuario usuario;
+
+    @OneToOne
+    @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
+    private Inmueble inmueble;
 
     public int getOperacionId() {
         return operacionId;
@@ -88,5 +98,5 @@ public class Operacion {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
+
 }

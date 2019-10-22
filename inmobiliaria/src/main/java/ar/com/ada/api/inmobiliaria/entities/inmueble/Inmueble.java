@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ import javax.persistence.Table;
 
 import ar.com.ada.api.inmobiliaria.entities.caracteristica.Caracteristica;
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
+import ar.com.ada.api.inmobiliaria.entities.operacion.Operacion;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locador;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
 
@@ -53,6 +55,9 @@ public class Inmueble {
     @OneToOne
     @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
     private Locatario locatario; // cómo reconce estos id si en bd va a ser persona_id??
+
+    @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL)
+    private Operacion operacion;
 
     @ManyToOne
     @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")

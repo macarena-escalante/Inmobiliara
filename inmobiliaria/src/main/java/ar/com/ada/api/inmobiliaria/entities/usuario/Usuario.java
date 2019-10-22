@@ -1,5 +1,6 @@
 package ar.com.ada.api.inmobiliaria.entities.usuario;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
+import ar.com.ada.api.inmobiliaria.entities.operacion.Operacion;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
 
 /**
@@ -34,6 +36,9 @@ public class Usuario {
     @OneToOne
     @JoinColumn(name = "inmobiliaria_id", referencedColumnName = "inmobiliaria_id")
     private Inmobiliaria inmobiliaria;
+
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Operacion operacion;
 
     public int getUsuarioId() {
         return usuarioId;

@@ -15,8 +15,7 @@
             "name": "Debug (Launch)-DemoApplication<inmobiliaria>",
             "request": "launch",
             "mainClass": "ar.com.ada.api.inmobiliaria.DemoApplication",
-            "projectName": "inmobiliaria",
-            "console": "externalTerminal"
+            "projectName": "inmobiliaria"
         }
     ]
 }

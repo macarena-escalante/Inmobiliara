@@ -15,3 +15,4 @@ public class LocadorRequest {
 
     public String direccion;
 }
+
