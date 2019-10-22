@@ -30,6 +30,10 @@ public class InmuebleService {
     @Autowired
     LocadorService locadorService;
 
+    public void guardarInmueble(Inmueble inmueble) {
+        repoInmueble.save(inmueble);
+    }
+
     public List<Inmueble> getInmuebles() {
 
         return repoInmueble.findAll();

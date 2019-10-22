@@ -12,5 +12,6 @@ import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario , Integer>{
     
     Usuario findByEmail(String email);
+
     
 }

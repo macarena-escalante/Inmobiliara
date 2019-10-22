@@ -12,7 +12,6 @@ import ar.com.ada.api.inmobiliaria.repositorys.inmobiliaria.InmobiliariaReposito
  * InmobiliariaService
  */
 @Service
-
 public class InmobiliariaService {
 
     @Autowired

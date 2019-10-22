@@ -100,4 +100,8 @@ public class Inmobiliaria {
     public int getInmobiliariaId (){
         return inmobiliariaId;
     }
+
+	public Inmobiliaria buscarPorId(int id) {
+		return null;
+	}
 }

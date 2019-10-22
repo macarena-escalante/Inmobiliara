@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
+import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
 import ar.com.ada.api.inmobiliaria.repositorys.persona.LocatarioRepository;
+import ar.com.ada.api.inmobiliaria.services.usuario.UsuarioService;
 
 /**
  * LocatarioService
@@ -17,6 +19,9 @@ public class LocatarioService {
 
     @Autowired
     LocatarioRepository repoLocatario;
+
+    @Autowired
+    UsuarioService usuarioService;
 
     public Locatario registrarLocatario(String nombre, String dni, String email, int telefono, String direccion){
 
@@ -64,6 +69,11 @@ public class LocatarioService {
 
         repoLocatario.save(l);
 
+        return l;
+    }
+    public Locatario buscarLocatarioConUsuario(int id){
+        Usuario u = usuarioService.buscarPorId(id);
+        Locatario l = u.getLocatario();
         return l;
     }
 

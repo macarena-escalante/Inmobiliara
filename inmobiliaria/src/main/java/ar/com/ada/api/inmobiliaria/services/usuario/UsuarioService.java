@@ -12,6 +12,7 @@ import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
 import ar.com.ada.api.inmobiliaria.repositorys.usuario.UsuarioRepository;
 import ar.com.ada.api.inmobiliaria.security.Crypto;
 import ar.com.ada.api.inmobiliaria.services.inmobiliaria.InmobiliariaService;
+import ar.com.ada.api.inmobiliaria.services.persona.LocatarioService;
 
 /**
  * UsuarioService
@@ -23,6 +24,9 @@ public class UsuarioService {
     UsuarioRepository repoUsuario;
     @Autowired
     InmobiliariaService inmobiliariaService; 
+
+    @Autowired
+    LocatarioService locatarioService;
 
     public void save(Usuario u) {
         repoUsuario.save(u);
@@ -40,6 +44,21 @@ public class UsuarioService {
         return u;
 
     }
+
+    public Usuario agregarUsuarioLocatario(int locatarioId, String password) {
+
+        Usuario u = new Usuario();
+        Locatario l = locatarioService.buscarLocatarioPorId(locatarioId);
+
+        u.setEmail(l.getEmail());
+        u.setPassword(Crypto.encrypt(password, u.getEmail()));
+        u.setLocatario(l);
+                                                                              //VER CON ARI
+        repoUsuario.save(u);
+        return u;
+
+    }
+
 
     public List<Usuario> getUsuarios() {
 
@@ -72,6 +91,13 @@ public class UsuarioService {
         return u;
 
     }
+    public Usuario actualizarEmailDeUsuario(int id, String email){
+        Usuario u = buscarPorId(id);
+        u.setEmail(email);
+        repoUsuario.save(u);
+
+        return u;
+    }
 
 
     public void eliminar(){
@@ -82,7 +108,4 @@ public class UsuarioService {
 
     }
 
-    public void actualizar(){
-        
-    }
 }
