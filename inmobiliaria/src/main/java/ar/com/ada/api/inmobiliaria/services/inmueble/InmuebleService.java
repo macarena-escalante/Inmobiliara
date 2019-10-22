@@ -104,4 +104,8 @@ public class InmuebleService {
 
     }
 
+    public List<Inmueble> buscarPorEstado(String estado) {
+        return repoInmueble.findByEstado(estado);
+    }
+
 }

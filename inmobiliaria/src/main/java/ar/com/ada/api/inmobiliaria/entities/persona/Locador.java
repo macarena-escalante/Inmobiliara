@@ -95,5 +95,10 @@ public class Locador {
     public Locador() {
     }
 
+    public int getLocadorId() {
+        return locadorId;
+    }
+
+    
     
 }
