@@ -20,4 +20,5 @@ public class InmuebleRequest {
     public String tipoInmueble;
 
     public int id;
+
 }
