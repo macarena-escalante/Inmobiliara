@@ -1,7 +1,10 @@
 package ar.com.ada.api.inmobiliaria.services.operacion;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +37,20 @@ public class OperacionService {
 
     public void guardarOperacion(Operacion operacion) {
         repoOperacion.save(operacion);
+    }
+
+    public List<Operacion> getOperaciones() {
+
+        return repoOperacion.findAll();
+    }
+
+    public Operacion buscarOperacionPorId(int id) {
+
+        Optional<Operacion> o = repoOperacion.findById(id);
+
+        if (o.isPresent())
+            return o.get();
+        return null;
     }
 
     public void agregarOperacion(BigDecimal monto, String tipo, int inmuebleId, int usuarioId) {
@@ -81,8 +98,7 @@ public class OperacionService {
         i.setEstado("Alquilado");
         i.setLocatario(u.getLocatario());
         inmuebleService.guardarInmueble(i);
-
-        if (u.getLocatario() != null && i.getEstado() == "Disponible") {
+        
             Operacion operacion = new Operacion();
             operacion.setFecha(new Date());
             operacion.setMonto(monto);
@@ -92,33 +108,31 @@ public class OperacionService {
             guardarOperacion(operacion);
 
             return operacion;
-        }
-
-        return null;
     }
-/*
-    public Operacion operacionAlquilerConReserva(BigDecimal monto, int inmuebleId, int usuarioId) {
 
-        Usuario u = usuarioService.buscarPorId(usuarioId);
+    public List<Operacion> getOperacionesReservas() {
+        List<Operacion> operaciones = new ArrayList<Operacion>();
 
-        Inmueble i = inmuebleService.buscarInmueblePorId(inmuebleId);
+        for (Operacion o : getOperaciones()) {
+            if (o.getTipo().equals("Reserva")) {
+                Operacion op = o;
 
-        i.setEstado("Alquilado");
-        i.setLocatario(u.getLocatario());
-        inmuebleService.guardarInmueble(i);
-
-        if (i.getLocatario() == u.getLocatario()) {
-            Operacion operacion = new Operacion();
-            operacion.setFecha(new Date());
-            operacion.setMonto(monto);
-            operacion.setInmueble(i);
-            operacion.setUsuario(u);
-            operacion.setTipo("Alquiler");
-            guardarOperacion(operacion);
-
-            return operacion;
+                operaciones.add(op);
+            }
         }
-        return null;
+        return operaciones;
     }
-    */
+
+    public List<Operacion> getOperacionesAlquileres() {
+        List<Operacion> operaciones = new ArrayList<Operacion>();
+
+        for (Operacion o : getOperaciones()) {
+            if (o.getTipo().equals("Alquiler")) {
+                Operacion op = o;
+
+                operaciones.add(op);
+            }
+        }
+        return operaciones;
+    }
 }

@@ -9,8 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
@@ -33,12 +36,12 @@ public class Operacion {
 
     @Column(name = "tipo_de_operacion")
     private String tipo;
-
-    @OneToOne
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
     private Usuario usuario;
-
-    @OneToOne
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
     private Inmueble inmueble;
 
@@ -50,22 +53,6 @@ public class Operacion {
         this.operacionId = operacionId;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public BigDecimal getMonto() {
         return monto;
     }
@@ -74,12 +61,12 @@ public class Operacion {
         this.monto = monto;
     }
 
-    public Inmueble getInmueble() {
-        return inmueble;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setInmueble(Inmueble inmueble) {
-        this.inmueble = inmueble;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public Usuario getUsuario() {
@@ -90,16 +77,22 @@ public class Operacion {
         this.usuario = usuario;
     }
 
-    public Operacion(int operacionId, BigDecimal monto, Date fecha, String tipo, Usuario usuario, Inmueble inmueble) {
-        this.operacionId = operacionId;
-        this.monto = monto;
-        this.fecha = fecha;
-        this.tipo = tipo;
-        this.usuario = usuario;
+    public Inmueble getInmueble() {
+        return inmueble;
+    }
+
+    public void setInmueble(Inmueble inmueble) {
         this.inmueble = inmueble;
     }
 
-    public Operacion() {
+	public void setTipo(String tipo) {
+        this.tipo = tipo;
+	}
+
+    public String getTipo() {
+        return tipo;
     }
+
+   
 
 }
