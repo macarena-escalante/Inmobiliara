@@ -1,19 +1,12 @@
 package ar.com.ada.api.inmobiliaria.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.inmobiliaria.models.request.AuthRequest;
-import ar.com.ada.api.inmobiliaria.models.request.LoginRequest;
-import ar.com.ada.api.inmobiliaria.models.response.JwtResponse;
 import ar.com.ada.api.inmobiliaria.models.response.PostResponse;
-import ar.com.ada.api.inmobiliaria.security.jwt.JWTTokenUtil;
-import ar.com.ada.api.inmobiliaria.services.JWTUserDetailsService;
 import ar.com.ada.api.inmobiliaria.services.inmobiliaria.InmobiliariaService;
 import ar.com.ada.api.inmobiliaria.services.persona.LocatarioService;
 import ar.com.ada.api.inmobiliaria.services.usuario.UsuarioService;
@@ -33,12 +26,6 @@ public class AuthController {
     @Autowired
     LocatarioService locatarioService;
 
-    @Autowired
-    private JWTTokenUtil jwtTokenUtil;
-
-    @Autowired
-    private JWTUserDetailsService userDetailsService;
-
     @PostMapping("/usuarios/inmobiliarias/")
     public PostResponse postnewUsuarioInmob(@RequestBody AuthRequest req) {
         PostResponse p = new PostResponse();
@@ -49,7 +36,7 @@ public class AuthController {
         return p;
     }
 
-    @PostMapping("/usuarios/locatarios/")
+    @PostMapping("usuarios/locatarios/")
     public PostResponse postnewUsuarioLocat(@RequestBody AuthRequest req) {
         PostResponse p = new PostResponse();
 
@@ -58,6 +45,7 @@ public class AuthController {
         p.message = "Creaste un usuario con éxito.";
         return p;
     }
+    /*
 
     @PostMapping("auth/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginRequest authenticationRequest)
@@ -71,5 +59,5 @@ public class AuthController {
 
         return ResponseEntity.ok(new JwtResponse(token));
     }
-
+*/
 }

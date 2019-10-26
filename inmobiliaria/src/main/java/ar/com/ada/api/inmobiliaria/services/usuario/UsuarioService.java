@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
+
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
@@ -29,6 +29,7 @@ public class UsuarioService {
     @Autowired
     InmobiliariaRepository repoInmobiliaria;
 
+    @Autowired
     LocatarioRepository repoLocatario;
 
     @Autowired
@@ -73,13 +74,15 @@ public class UsuarioService {
         l.setTelefono(telefono);
         l.setDireccion(direccion);
         l.setEmail(email);
+        
+        repoLocatario.save(l);
 
         u.setEmail(l.getEmail());
         u.setUsername(l.getEmail());
         u.setPassword(Crypto.encrypt(password, u.getEmail()));
         u.setLocatario(l);
 
-        repoLocatario.save(l);
+      
         repoUsuario.save(u);
         return u;
     }
@@ -110,15 +113,19 @@ public class UsuarioService {
         return u;
     }
 
-    public void login(String email, String password) {
+    /*
+    public void login(String username, String password) {
 
-        Usuario u = repoUsuario.findByEmail(email);
+        Usuario u = repoUsuario.findByUsername(username);
 
-        if (u == null || !u.getPassword().equals(Crypto.encrypt(password, u.getEmail()))) {
+        if(u == null || !u.getPassword().equals(Crypto.encrypt(password, u.getUsername()))) {
 
             throw new BadCredentialsException("Usuario o contraseña invalida");
         }
+
     }
+    */
+
 
     public Usuario buscarPorUsername(String username) {
 
