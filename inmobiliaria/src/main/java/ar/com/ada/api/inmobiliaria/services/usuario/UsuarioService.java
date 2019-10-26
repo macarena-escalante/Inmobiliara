@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
 import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
+import ar.com.ada.api.inmobiliaria.repositorys.inmobiliaria.InmobiliariaRepository;
+import ar.com.ada.api.inmobiliaria.repositorys.persona.LocatarioRepository;
 import ar.com.ada.api.inmobiliaria.repositorys.usuario.UsuarioRepository;
 import ar.com.ada.api.inmobiliaria.security.Crypto;
 import ar.com.ada.api.inmobiliaria.services.inmobiliaria.InmobiliariaService;
@@ -23,6 +25,12 @@ public class UsuarioService {
 
     @Autowired
     UsuarioRepository repoUsuario;
+
+    @Autowired
+    InmobiliariaRepository repoInmobiliaria;
+
+    LocatarioRepository repoLocatario;
+
     @Autowired
     InmobiliariaService inmobiliariaService;
 
@@ -33,27 +41,41 @@ public class UsuarioService {
         repoUsuario.save(u);
     }
 
-    public Usuario agregarUsuarioInmobiliaria(Inmobiliaria inmobiliaria, String password, String email) {
+    public Usuario agregarUsuarioInmobiliaria(String nombre, String direccion, String cuit, String email, String password) {
 
+        Inmobiliaria i = new Inmobiliaria();
         Usuario u = new Usuario();
+        
+        i.setNombre(nombre);
+        i.setDireccion(direccion);
+        i.setCuit(cuit);
+        i.setEmail(email);
 
         u.setEmail(email);
         u.setPassword(Crypto.encrypt(password, u.getEmail()));
-        u.setInmobiliaria(inmobiliaria);
-        // VER CON ARI
+        u.setInmobiliaria(i);
+
+        repoInmobiliaria.save(i);
         repoUsuario.save(u);
         return u;
     }
 
-    public Usuario agregarUsuarioLocatario(int locatarioId, String password) {
+    public Usuario agregarUsuarioLocatario(String nombre, String dni, int telefono, String direccion, String email, String password) {
 
+        Locatario l = new Locatario();
         Usuario u = new Usuario();
-        Locatario l = locatarioService.buscarLocatarioPorId(locatarioId);
+
+        l.setNombre(nombre);
+        l.setDni(dni);
+        l.setTelefono(telefono);
+        l.setDireccion(direccion);
+        l.setEmail(email);
 
         u.setEmail(l.getEmail());
         u.setPassword(Crypto.encrypt(password, u.getEmail()));
         u.setLocatario(l);
-        // VER CON ARI
+    
+        repoLocatario.save(l);
         repoUsuario.save(u);
         return u;
     }
@@ -74,18 +96,6 @@ public class UsuarioService {
 
     public Usuario buscarPorEmail(String email) {
         return repoUsuario.findByEmail(email);
-    }
-
-    public Usuario agregarUsuario(Locatario locatario, String password, String email) {
-
-        Usuario u = new Usuario();
-
-        u.setEmail(email);
-        u.setPassword(Crypto.encrypt(password, u.getEmail()));
-        u.setLocatario(locatario);
-
-        repoUsuario.save(u);
-        return u;
     }
 
     public Usuario actualizarEmailDeUsuario(int id, String email) {
