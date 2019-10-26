@@ -1,6 +1,7 @@
 package ar.com.ada.api.inmobiliaria.services.inmueble;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -112,4 +113,71 @@ public class InmuebleService {
         return repoInmueble.findByEstado(estado);
     }
 
-}
+    public List<Inmueble> getInmuebleAlquiler() {
+
+        List<Inmueble> inmueblecitos = new ArrayList<Inmueble>();
+
+        for (Inmueble t : getInmuebles()) {
+            if (t.getEstado().equals("alquilado")) {
+                Inmueble i = t;
+
+                inmueblecitos.add(i);
+            }
+            
+        }
+
+        return inmueblecitos;
+    }
+
+    public List<Inmueble> getInmuebleReserva(){
+
+        List<Inmueble> inmueblecitos = new ArrayList<Inmueble>();
+
+        for (Inmueble t : getInmuebles()) {
+            if (t.getEstado().equals("reservado")) {
+                Inmueble i = t;
+            
+                inmueblecitos.add(i);
+            }
+            
+        }
+
+        return inmueblecitos;
+    }
+
+    public List<Inmueble> getInmuebleVenta(){
+
+    List <Inmueble> inmueblecitos = new ArrayList<Inmueble>();
+
+    for (Inmueble t : getInmuebles()) {
+        if (t.getEstado().equals("reservado")) {
+            Inmueble i = t;
+
+            inmueblecitos.add(i);
+        }
+        
+    }
+
+    return inmueblecitos;
+    
+    }
+
+    public List<Inmueble> getInmuebleDisponible(){
+
+        List<Inmueble> inmueblecitos = new ArrayList<Inmueble>();
+
+        for (Inmueble t : getInmuebles()) {
+            if (t.getEstado().equals("disponible")) {
+                Inmueble i = t;
+
+                inmueblecitos.add(i);
+            }
+            
+        }
+
+        return inmueblecitos;
+    }
+    }
+
+
+
