@@ -38,9 +38,8 @@ public class AuthController {
     @PostMapping("/usuarios/inmobiliarias/{id}")
     public PostResponse postnewUsuarioInmob(@RequestBody UsuarioRequest req, @PathVariable int id) {
         PostResponse p = new PostResponse();
-        
-        Inmobiliaria inmobiliaria = inmobiliariaService.buscarPorId(id);
 
+        Inmobiliaria inmobiliaria = inmobiliariaService.buscarPorId(id);
 
         usuarioService.agregarUsuarioInmobiliaria(inmobiliaria, req.password, req.email);
         p.isOk = true;
@@ -51,12 +50,11 @@ public class AuthController {
     @PostMapping("/usuarios/locatarios/{id}")
     public PostResponse postnewUsuarioLocat(@RequestBody UsuarioRequest req, @PathVariable int id) {
         PostResponse p = new PostResponse();
-       
+
         usuarioService.agregarUsuarioLocatario(req.locatarioId, req.password);
         p.isOk = true;
         p.message = "Creaste un usuario con éxito.";
         return p;
     }
-
 
 }

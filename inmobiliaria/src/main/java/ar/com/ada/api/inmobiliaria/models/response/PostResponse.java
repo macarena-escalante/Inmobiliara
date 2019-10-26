@@ -5,6 +5,6 @@ package ar.com.ada.api.inmobiliaria.models.response;
  */
 public class PostResponse {
 
-    public boolean isOk = false;
+    public boolean isOk;
     public String message = "";
 }
