@@ -39,11 +39,9 @@ public class AuthController {
     @Autowired
     private JWTUserDetailsService userDetailsService;
 
-    @PostMapping("/usuarios/inmobiliarias/{id}")
-    public PostResponse postnewUsuarioInmob(@RequestBody AuthRequest req, @PathVariable int id) {
+    @PostMapping("/usuarios/inmobiliarias/")
+    public PostResponse postnewUsuarioInmob(@RequestBody AuthRequest req) {
         PostResponse p = new PostResponse();
-
-        inmobiliariaService.buscarPorId(id);
 
         usuarioService.agregarUsuarioInmobiliaria(req.nombre, req.direccion, req.cuit, req.email, req.password);
         p.isOk = true;
@@ -51,8 +49,8 @@ public class AuthController {
         return p;
     }
 
-    @PostMapping("/usuarios/locatarios/{id}")
-    public PostResponse postnewUsuarioLocat(@RequestBody AuthRequest req, @PathVariable int id) {
+    @PostMapping("/usuarios/locatarios/")
+    public PostResponse postnewUsuarioLocat(@RequestBody AuthRequest req) {
         PostResponse p = new PostResponse();
 
         usuarioService.agregarUsuarioLocatario(req.nombre, req.dni, req.telefono, req.direccion, req.email, req.password);

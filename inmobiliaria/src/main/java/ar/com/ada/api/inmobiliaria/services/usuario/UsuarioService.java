@@ -41,17 +41,19 @@ public class UsuarioService {
         repoUsuario.save(u);
     }
 
-    public Usuario agregarUsuarioInmobiliaria(String nombre, String direccion, String cuit, String email, String password) {
+    public Usuario agregarUsuarioInmobiliaria(String nombre, String direccion, String cuit, String email,
+            String password) {
 
         Inmobiliaria i = new Inmobiliaria();
         Usuario u = new Usuario();
-        
+
         i.setNombre(nombre);
         i.setDireccion(direccion);
         i.setCuit(cuit);
         i.setEmail(email);
 
-        u.setEmail(email);
+        u.setEmail(i.getEmail());
+        u.setUsername(i.getEmail());
         u.setPassword(Crypto.encrypt(password, u.getEmail()));
         u.setInmobiliaria(i);
 
@@ -60,7 +62,8 @@ public class UsuarioService {
         return u;
     }
 
-    public Usuario agregarUsuarioLocatario(String nombre, String dni, int telefono, String direccion, String email, String password) {
+    public Usuario agregarUsuarioLocatario(String nombre, String dni, int telefono, String direccion, String email,
+            String password) {
 
         Locatario l = new Locatario();
         Usuario u = new Usuario();
@@ -72,9 +75,10 @@ public class UsuarioService {
         l.setEmail(email);
 
         u.setEmail(l.getEmail());
+        u.setUsername(l.getEmail());
         u.setPassword(Crypto.encrypt(password, u.getEmail()));
         u.setLocatario(l);
-    
+
         repoLocatario.save(l);
         repoUsuario.save(u);
         return u;
@@ -116,5 +120,11 @@ public class UsuarioService {
         }
     }
 
+    public Usuario buscarPorUsername(String username) {
+
+        Usuario u = repoUsuario.findByUsername(username);
+        return u;
+
+    }
 
 }

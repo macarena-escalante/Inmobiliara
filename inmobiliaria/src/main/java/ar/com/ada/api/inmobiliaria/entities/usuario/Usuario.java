@@ -28,6 +28,8 @@ public class Usuario {
     @Column(name = "usuario_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int usuarioId;
+
+    private String username;
     private String email;
     private String password; 
     
@@ -96,6 +98,22 @@ public class Usuario {
 
     public void setInmobiliaria(Inmobiliaria inmobiliaria) {
         this.inmobiliaria = inmobiliaria;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<Operacion> getOperaciones() {
+        return operaciones;
+    }
+
+    public void setOperaciones(List<Operacion> operaciones) {
+        this.operaciones = operaciones;
     }
 
 }
