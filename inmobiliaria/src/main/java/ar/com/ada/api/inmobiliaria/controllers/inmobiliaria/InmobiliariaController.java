@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
-import ar.com.ada.api.inmobiliaria.models.request.InmobiliariaRequest;
+import ar.com.ada.api.inmobiliaria.models.request.AuthRequest;
 import ar.com.ada.api.inmobiliaria.models.response.PostResponse;
 import ar.com.ada.api.inmobiliaria.services.inmobiliaria.InmobiliariaService;
 
@@ -26,7 +26,7 @@ public class InmobiliariaController {
     InmobiliariaService inmobiliariaService;
     
     @PostMapping("/inmobiliarias")
-    public PostResponse postnewInmobiliaria(@RequestBody InmobiliariaRequest req){
+    public PostResponse postnewInmobiliaria(@RequestBody AuthRequest req){
 
         PostResponse i = new PostResponse();
     
@@ -54,7 +54,7 @@ public class InmobiliariaController {
     }
 
     @PutMapping("/inmobiliarias/{id}")
-    public PostResponse actualizaEmpleado(@PathVariable int id, @RequestBody InmobiliariaRequest req){
+    public PostResponse actualizaEmpleado(@PathVariable int id, @RequestBody AuthRequest req){
 
         PostResponse p = new PostResponse();
         

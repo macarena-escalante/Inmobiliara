@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
+import ar.com.ada.api.inmobiliaria.models.request.AuthRequest;
 import ar.com.ada.api.inmobiliaria.models.request.LoginRequest;
-import ar.com.ada.api.inmobiliaria.models.request.UsuarioRequest;
 import ar.com.ada.api.inmobiliaria.models.response.JwtResponse;
 import ar.com.ada.api.inmobiliaria.models.response.PostResponse;
 import ar.com.ada.api.inmobiliaria.security.jwt.JWTTokenUtil;
@@ -41,22 +40,22 @@ public class AuthController {
     private JWTUserDetailsService userDetailsService;
 
     @PostMapping("/usuarios/inmobiliarias/{id}")
-    public PostResponse postnewUsuarioInmob(@RequestBody UsuarioRequest req, @PathVariable int id) {
+    public PostResponse postnewUsuarioInmob(@RequestBody AuthRequest req, @PathVariable int id) {
         PostResponse p = new PostResponse();
 
-        Inmobiliaria inmobiliaria = inmobiliariaService.buscarPorId(id);
+        inmobiliariaService.buscarPorId(id);
 
-        usuarioService.agregarUsuarioInmobiliaria(inmobiliaria, req.password, req.email);
+        usuarioService.agregarUsuarioInmobiliaria(req.nombre, req.direccion, req.cuit, req.email, req.password);
         p.isOk = true;
         p.message = "Creaste un usuario con éxito.";
         return p;
     }
 
     @PostMapping("/usuarios/locatarios/{id}")
-    public PostResponse postnewUsuarioLocat(@RequestBody UsuarioRequest req, @PathVariable int id) {
+    public PostResponse postnewUsuarioLocat(@RequestBody AuthRequest req, @PathVariable int id) {
         PostResponse p = new PostResponse();
 
-        usuarioService.agregarUsuarioLocatario(req.locatarioId, req.password);
+        usuarioService.agregarUsuarioLocatario(req.nombre, req.dni, req.telefono, req.direccion, req.email, req.password);
         p.isOk = true;
         p.message = "Creaste un usuario con éxito.";
         return p;

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.inmobiliaria.entities.usuario.Usuario;
-import ar.com.ada.api.inmobiliaria.models.request.UsuarioRequest;
+import ar.com.ada.api.inmobiliaria.models.request.AuthRequest;
 import ar.com.ada.api.inmobiliaria.models.response.PostResponse;
 import ar.com.ada.api.inmobiliaria.services.inmobiliaria.InmobiliariaService;
 import ar.com.ada.api.inmobiliaria.services.persona.LocatarioService;
@@ -45,7 +45,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/usuarios/{id}")
-    public PostResponse actualizaUsuario(@PathVariable int id, @RequestBody UsuarioRequest req) {
+    public PostResponse actualizaUsuario(@PathVariable int id, @RequestBody AuthRequest req) {
         PostResponse p = new PostResponse();
 
         usuarioService.actualizarEmailDeUsuario(id, req.email);

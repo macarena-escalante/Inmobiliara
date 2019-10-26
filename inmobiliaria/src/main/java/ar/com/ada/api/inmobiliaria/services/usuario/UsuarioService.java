@@ -116,12 +116,5 @@ public class UsuarioService {
         }
     }
 
-    public void eliminar() {
-
-    }
-
-    public void modificar() {
-
-    }
 
 }

@@ -1,4 +1,4 @@
-package ar.com.ada.api.inmobiliaria.models;
+package ar.com.ada.api.inmobiliaria.models.request;
 
 /**
  * AuthRequest
