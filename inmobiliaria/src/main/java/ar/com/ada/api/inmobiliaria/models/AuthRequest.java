@@ -1,9 +1,9 @@
-package ar.com.ada.api.inmobiliaria.models.request;
+package ar.com.ada.api.inmobiliaria.models;
 
 /**
- * LocatarioRequest
+ * AuthRequest
  */
-public class LocatarioRequest {
+public class AuthRequest {
 
     public String nombre;
 
@@ -14,5 +14,9 @@ public class LocatarioRequest {
     public String email;
 
     public String direccion;
+
+    public String cuit;
+
+    public String password;
     
 }
