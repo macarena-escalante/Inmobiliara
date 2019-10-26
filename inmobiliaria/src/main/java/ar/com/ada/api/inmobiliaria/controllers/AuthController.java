@@ -62,8 +62,6 @@ public class AuthController {
         return p;
     }
 
-<<<<<<< HEAD
-=======
     @PostMapping("auth/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginRequest authenticationRequest)
             throws Exception {
@@ -77,5 +75,4 @@ public class AuthController {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
->>>>>>> d443be6c7db6ea1e148444a2d46d38ddd31d220b
 }
