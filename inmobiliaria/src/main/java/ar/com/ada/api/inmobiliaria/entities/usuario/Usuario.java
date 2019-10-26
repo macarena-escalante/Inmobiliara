@@ -31,7 +31,6 @@ public class Usuario {
     private String email;
     private String password; 
     
-    
     @OneToOne
     @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
     private Locatario locatario;
