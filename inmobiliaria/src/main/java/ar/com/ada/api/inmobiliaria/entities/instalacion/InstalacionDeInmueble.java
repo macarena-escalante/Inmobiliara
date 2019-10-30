@@ -2,13 +2,15 @@ package ar.com.ada.api.inmobiliaria.entities.instalacion;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 
 /**
  * Instalacion
  */
 @Entity
-@Table(name= "instalacion")
+@Table(name= "instalacion_de_inmueble")
 public class InstalacionDeInmueble {
 
     @Id
@@ -17,11 +19,15 @@ public class InstalacionDeInmueble {
     private int instalacionId;
     
     private String luz;
+
     @Column(name= "agua_corriente")
     private String aguaCorriente;
+
     private String gas;
 
-    @OneToOne(mappedBy = "inmueble_id")
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
     private Inmueble inmueble;
 
     public int getInstalacionId() {

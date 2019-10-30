@@ -5,6 +5,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ar.com.ada.api.inmobiliaria.entities.caracteristica.CaracteristicaDeInmueble;
 import ar.com.ada.api.inmobiliaria.entities.amenitie.AmenitieDeInmueble;
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
@@ -46,9 +48,11 @@ public class Inmueble {
     @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
     private Locatario locatario; // cómo reconce estos id si en bd va a ser persona_id??
 
+    @JsonIgnore
     @OneToMany(mappedBy = "inmueble", cascade = CascadeType.ALL)
     private List<Operacion> operaciones;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
     private Locador locador;

@@ -124,7 +124,7 @@ public class InmuebleService {
         List<Inmueble> inmueblecitos = new ArrayList<Inmueble>();
 
         for (Inmueble t : getInmuebles()) {
-            if (t.getEstado().equals("alquilado")) {
+            if (t.getEstado().equals("Alquilado")) {
                 Inmueble i = t;
 
                 inmueblecitos.add(i);
@@ -140,7 +140,7 @@ public class InmuebleService {
         List<Inmueble> inmueblecitos = new ArrayList<Inmueble>();
 
         for (Inmueble t : getInmuebles()) {
-            if (t.getEstado().equals("reservado")) {
+            if (t.getEstado().equals("Reservado")) {
                 Inmueble i = t;
             
                 inmueblecitos.add(i);
@@ -156,7 +156,7 @@ public class InmuebleService {
     List <Inmueble> inmueblecitos = new ArrayList<Inmueble>();
 
     for (Inmueble t : getInmuebles()) {
-        if (t.getEstado().equals("reservado")) {
+        if (t.getEstado().equals("Vendido")) {
             Inmueble i = t;
 
             inmueblecitos.add(i);
@@ -173,7 +173,7 @@ public class InmuebleService {
         List<Inmueble> inmueblecitos = new ArrayList<Inmueble>();
 
         for (Inmueble t : getInmuebles()) {
-            if (t.getEstado().equals("disponible")) {
+            if (t.getEstado().equals("Disponible")) {
                 Inmueble i = t;
 
                 inmueblecitos.add(i);

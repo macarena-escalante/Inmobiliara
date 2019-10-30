@@ -2,6 +2,8 @@ package ar.com.ada.api.inmobiliaria.entities.caracteristica;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 
 
@@ -24,6 +26,7 @@ public class CaracteristicaDeInmueble {
     public int cochera;
     public int terraza;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name= "inmueble_id", referencedColumnName = "inmueble_id")
     private Inmueble inmueble;
