@@ -59,9 +59,6 @@ public class Inmueble {
     @OneToOne(mappedBy = "inmueble")
     private CaracteristicaDeInmueble caracteristica;
 
-    @JoinTable(name = "caracteristica_por_inmueble", joinColumns = @JoinColumn(name = "inmueble_id"), inverseJoinColumns = @JoinColumn(name = "caracteristica_id"))
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<CaracteristicaDeInmueble> caracteristicas;
  
     public int getInmuebleId() {
         return inmuebleId;
@@ -141,14 +138,6 @@ public class Inmueble {
 
     public void setInmobiliaria(Inmobiliaria inmobiliaria) {
         this.inmobiliaria = inmobiliaria;
-    }
-
-    public List<CaracteristicaDeInmueble> getCaracteristicas() {
-        return caracteristicas;
-    }
-
-    public void setCaracteristicas(List<CaracteristicaDeInmueble> caracteristicas) {
-        this.caracteristicas = caracteristicas;
     }
 
     public List<Operacion> getOperaciones() {

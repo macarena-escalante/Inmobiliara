@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 
 /**
@@ -29,7 +31,7 @@ public class AmenitieDeInmueble {
     
     private String gimnasio;
 
-
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
     private Inmueble inmueble;

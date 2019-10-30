@@ -11,7 +11,7 @@ import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
  * Caracteristica
  */
 @Entity
-@Table(name = "caracteristica")
+@Table(name = "caracteristica_de_inmueble")
 public class CaracteristicaDeInmueble {
     @Id
     @Column(name = "caracteristica_id")
@@ -83,6 +83,14 @@ public class CaracteristicaDeInmueble {
 
     public void setTerraza(int terraza) {
         this.terraza = terraza;
+    }
+
+    public Inmueble getInmueble() {
+        return inmueble;
+    }
+
+    public void setInmueble(Inmueble inmueble) {
+        this.inmueble = inmueble;
     }
 
     

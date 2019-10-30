@@ -36,6 +36,7 @@ public class CaracteristicaService {
         c.setPatio(patio);
         c.setCochera(cochera);
         c.setTerraza(terraza);
+        c.setInmueble(i);
 
         repoCaracteristica.save(c);
         return c;
