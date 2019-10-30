@@ -13,6 +13,7 @@ import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locador;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
 import ar.com.ada.api.inmobiliaria.repositorys.inmueble.InmuebleRepository;
+import ar.com.ada.api.inmobiliaria.services.amenitie.AmenitieService;
 import ar.com.ada.api.inmobiliaria.services.inmobiliaria.InmobiliariaService;
 import ar.com.ada.api.inmobiliaria.services.persona.LocadorService;
 
@@ -30,6 +31,9 @@ public class InmuebleService {
 
     @Autowired
     LocadorService locadorService;
+
+    @Autowired
+    AmenitieService amenitieService;
 
     public void guardarInmueble(Inmueble inmueble) {
         repoInmueble.save(inmueble);
@@ -53,12 +57,14 @@ public class InmuebleService {
         inmueble.setAntiguedad(antiguedad);
         inmueble.setInmobiliaria(inmobiliaria);
         inmueble.setTipoInmueble(tipoInmueble);
-
+       
         repoInmueble.save(inmueble);
 
         return inmueble;
 
     }
+
+    
 
     public Inmueble registrarInmuebleConLocador(String direccion, BigDecimal precio, String estado,
             double superficie, int antiguedad, int locadorId, String tipoInmueble) {

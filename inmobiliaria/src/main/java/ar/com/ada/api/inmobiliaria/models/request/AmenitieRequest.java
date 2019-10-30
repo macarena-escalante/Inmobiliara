@@ -5,7 +5,8 @@ package ar.com.ada.api.inmobiliaria.models.request;
  */
 public class AmenitieRequest {
 
-    private String ascensor;
-    private String pileta;
-    private String gimnasio;
+    public int inmuebleId;
+    public String ascensor;
+    public String pileta;
+    public String gimnasio;
 }
