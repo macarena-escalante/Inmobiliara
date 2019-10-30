@@ -26,7 +26,7 @@ public class CaracteristicaController {
     @PostMapping("caracteristicas")
     public PostResponse postRegistrarCaracteristica(@RequestBody CaracteristicaRequest req ){
         PostResponse c = new PostResponse();
-        caracteristicaService.registrarCaracteristica(req.ambientes, req.balcon, req.baños, req.cochera, req.patio, req.terraza);
+        caracteristicaService.registrarCaracteristica(req.inmuebleId, req.ambientes, req.balcon, req.baños, req.cochera, req.patio, req.terraza);
 
         
         c.isOk = true;
