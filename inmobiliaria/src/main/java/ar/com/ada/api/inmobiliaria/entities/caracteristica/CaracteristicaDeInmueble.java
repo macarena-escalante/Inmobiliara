@@ -1,12 +1,11 @@
 package ar.com.ada.api.inmobiliaria.entities.caracteristica;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.*;
 
-
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
+
+
+
 
 /**
  * Caracteristica
@@ -18,31 +17,24 @@ public class CaracteristicaDeInmueble {
     @Column(name = "caracteristica_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int caracteristicaId;
-
-    @ManyToMany(mappedBy = "caracteristicas")
-    private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
-
     public int ambientes;
     public int baños;
     public int balcon;
     public int patio;
     public int cochera;
     public int terraza;
-    
+
+    @OneToOne
+    @JoinColumn(name= "inmueble_id", referencedColumnName = "inmueble_id")
+    private Inmueble inmueble;
+
+
     public int getCaracteristicaId() {
         return caracteristicaId;
     }
 
     public void setCaracteristicaId(int caracteristicaId) {
         this.caracteristicaId = caracteristicaId;
-    }
-
-    public List<Inmueble> getInmuebles() {
-        return inmuebles;
-    }
-
-    public void setInmuebles(List<Inmueble> inmuebles) {
-        this.inmuebles = inmuebles;
     }
 
     public int getAmbientes() {

@@ -56,6 +56,9 @@ public class Inmueble {
     @OneToOne(mappedBy = "inmueble")
     private AmenitieDeInmueble amenitie;
 
+    @OneToOne(mappedBy = "inmueble")
+    private CaracteristicaDeInmueble caracteristica;
+
     @JoinTable(name = "caracteristica_por_inmueble", joinColumns = @JoinColumn(name = "inmueble_id"), inverseJoinColumns = @JoinColumn(name = "caracteristica_id"))
     @ManyToMany(cascade = CascadeType.ALL)
     private List<CaracteristicaDeInmueble> caracteristicas;
