@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.inmobiliaria.entities.caracteristica.CaracteristicaDeInmueble;
+import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 import ar.com.ada.api.inmobiliaria.repositorys.caracteristica.CaracteristicaRepository;
+import ar.com.ada.api.inmobiliaria.services.inmueble.InmuebleService;
 
 /**
  * CaracteristicaService
@@ -16,14 +18,17 @@ import ar.com.ada.api.inmobiliaria.repositorys.caracteristica.CaracteristicaRepo
 public class CaracteristicaService {
 
     @Autowired
+    InmuebleService inmuebleService;
+    @Autowired
     CaracteristicaRepository repoCaracteristica;
 
     public void guardarCaracteristica(CaracteristicaDeInmueble c) {
         repoCaracteristica.save(c);
     }
 
-    public CaracteristicaDeInmueble registrarCaracteristica(int ambiente, int baño, int balcon, int patio, int cochera, int terraza) {
+    public CaracteristicaDeInmueble registrarCaracteristica(int inmuebleId, int ambiente, int baño, int balcon, int patio, int cochera, int terraza) {
         CaracteristicaDeInmueble c = new CaracteristicaDeInmueble();
+        Inmueble i = inmuebleService.buscarInmueblePorId(inmuebleId);
 
         c.setAmbientes(ambiente);
         c.setBaños(baño);

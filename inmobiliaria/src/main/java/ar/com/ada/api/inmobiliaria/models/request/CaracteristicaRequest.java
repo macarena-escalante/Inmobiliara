@@ -5,6 +5,7 @@ package ar.com.ada.api.inmobiliaria.models.request;
  */
 public class CaracteristicaRequest {
 
+    public int inmuebleId;
     public int ambientes;
     public int baños;
     public int balcon;
