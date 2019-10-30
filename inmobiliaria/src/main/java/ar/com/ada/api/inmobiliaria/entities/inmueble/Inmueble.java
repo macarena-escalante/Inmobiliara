@@ -5,6 +5,7 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import ar.com.ada.api.inmobiliaria.entities.amenitie.Amenitie;
 import ar.com.ada.api.inmobiliaria.entities.caracteristica.Caracteristica;
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
 import ar.com.ada.api.inmobiliaria.entities.operacion.Operacion;
@@ -59,7 +60,7 @@ public class Inmueble {
     @ManyToMany
     @JoinTable(name = "amenitie_por_inmueble", joinColumns = @JoinColumn(name = "inmueble_id"), 
     inverseJoinColumns = @JoinColumn(name = "amenitie_id"))
-    private List<Caracteristica> amenities = new ArrayList<Caracteristica>();
+    private List<Amenitie> amenities = new ArrayList<Amenitie>();
 
    /* @ManyToMany(mappedBy = "inmuebles")
     private List<Amenitie> amenities= new ArrayList<Amenitie>();
@@ -113,6 +114,7 @@ public class Inmueble {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
     /*
      * public Inmobiliaria getInmobiliaria() { return inmobiliaria; }
      * 

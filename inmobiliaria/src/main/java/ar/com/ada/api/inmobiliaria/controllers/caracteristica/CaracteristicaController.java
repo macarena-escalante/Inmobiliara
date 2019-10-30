@@ -29,6 +29,7 @@ public class CaracteristicaController {
         PostResponse c = new PostResponse();
         caracteristicaService.registrarCaracteristica(req.descripcion);
 
+        
         c.isOk = true;
         c.message = "Caracteristica registrada con éxito";
         
