@@ -5,10 +5,10 @@ import java.util.*;
 
 import javax.persistence.*;
 
-
 import ar.com.ada.api.inmobiliaria.entities.caracteristica.CaracteristicaDeInmueble;
 import ar.com.ada.api.inmobiliaria.entities.amenitie.AmenitieDeInmueble;
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
+import ar.com.ada.api.inmobiliaria.entities.instalacion.InstalacionDeInmueble;
 import ar.com.ada.api.inmobiliaria.entities.operacion.Operacion;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locador;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
@@ -54,12 +54,14 @@ public class Inmueble {
     private Locador locador;
 
     @OneToOne(mappedBy = "inmueble")
-    private AmenitieDeInmueble amenitie;
+    private CaracteristicaDeInmueble caracterisitca;
 
     @OneToOne(mappedBy = "inmueble")
-    private CaracteristicaDeInmueble caracteristica;
+    private InstalacionDeInmueble instalacion;
 
- 
+    @OneToOne(mappedBy = "inmueble")
+    private AmenitieDeInmueble amenitie;
+
     public int getInmuebleId() {
         return inmuebleId;
     }
@@ -140,12 +142,31 @@ public class Inmueble {
         this.inmobiliaria = inmobiliaria;
     }
 
+    public Inmueble() {
+    }
+
     public List<Operacion> getOperaciones() {
         return operaciones;
     }
 
     public void setOperaciones(List<Operacion> operaciones) {
         this.operaciones = operaciones;
+    }
+
+    public CaracteristicaDeInmueble getCaracterisitca() {
+        return caracterisitca;
+    }
+
+    public void setCaracterisitca(CaracteristicaDeInmueble caracterisitca) {
+        this.caracterisitca = caracterisitca;
+    }
+
+    public InstalacionDeInmueble getInstalacion() {
+        return instalacion;
+    }
+
+    public void setInstalacion(InstalacionDeInmueble instalacion) {
+        this.instalacion = instalacion;
     }
 
     public AmenitieDeInmueble getAmenitie() {
@@ -155,6 +176,5 @@ public class Inmueble {
     public void setAmenitie(AmenitieDeInmueble amenitie) {
         this.amenitie = amenitie;
     }
-
 
 }

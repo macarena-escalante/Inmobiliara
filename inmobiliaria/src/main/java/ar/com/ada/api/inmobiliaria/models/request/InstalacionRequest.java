@@ -5,7 +5,8 @@ package ar.com.ada.api.inmobiliaria.models.request;
  */
 public class InstalacionRequest {
 
-    private String luz;
-    private String aguaCorriente;
-    private String gas;
+    public String luz;
+    public String aguaCorriente;
+    public String gas;
+    public int inmuebleId;
 }
