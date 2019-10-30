@@ -61,7 +61,6 @@ public class Inmueble {
 
     @OneToOne(mappedBy = "inmueble")
     private AmenitieDeInmueble amenitie;
-    
 
     public int getInmuebleId() {
         return inmuebleId;
