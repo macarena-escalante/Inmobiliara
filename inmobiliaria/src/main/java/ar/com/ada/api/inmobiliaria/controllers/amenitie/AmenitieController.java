@@ -27,7 +27,7 @@ public class AmenitieController {
     public PostResponse postRegistrarAmenitie(@RequestBody AmenitieRequest req) {
 
         PostResponse a = new PostResponse();
-        amenitieService.registrarAmenitie(req.descripcion);
+        amenitieService.registrarAmenitie(req.inmuebleId,req.ascensor,req.gimnasio,req.pileta);
         a.isOk = true;
         a.message = "Amenitie registrada con éxito";
         return a;

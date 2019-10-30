@@ -5,11 +5,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
-
 import ar.com.ada.api.inmobiliaria.entities.caracteristica.CaracteristicaDeInmueble;
-import ar.com.ada.api.inmobiliaria.entities.amenitie.Amenitie;
 import ar.com.ada.api.inmobiliaria.entities.amenitie.AmenitieDeInmueble;
-import ar.com.ada.api.inmobiliaria.entities.caracteristica.Caracteristica;
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
 import ar.com.ada.api.inmobiliaria.entities.instalacion.InstalacionDeInmueble;
 import ar.com.ada.api.inmobiliaria.entities.operacion.Operacion;
@@ -56,16 +53,13 @@ public class Inmueble {
     @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
     private Locador locador;
 
-    @OneToOne
-    @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
+    @OneToOne(mappedBy = "inmueble")
     private CaracteristicaDeInmueble caracterisitca;
 
-    @OneToOne
-    @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
+    @OneToOne(mappedBy = "inmueble")
     private InstalacionDeInmueble instalacion;
 
-    @OneToOne
-    @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
+    @OneToOne(mappedBy = "inmueble")
     private AmenitieDeInmueble amenitie;
     
 

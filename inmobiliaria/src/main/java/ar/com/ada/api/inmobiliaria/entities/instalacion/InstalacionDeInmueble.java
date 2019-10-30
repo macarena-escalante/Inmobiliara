@@ -21,6 +21,7 @@ public class InstalacionDeInmueble {
     private String aguaCorriente;
     private String gas;
 
+    @OneToOne
     private Inmueble inmueble;
 
     public int getInstalacionId() {
