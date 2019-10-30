@@ -2,6 +2,8 @@ package ar.com.ada.api.inmobiliaria.entities.instalacion;
 
 import javax.persistence.*;
 
+import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
+
 /**
  * Instalacion
  */
@@ -18,6 +20,8 @@ public class InstalacionDeInmueble {
     @Column(name= "agua_corriente")
     private String aguaCorriente;
     private String gas;
+
+    private Inmueble inmueble;
 
     public int getInstalacionId() {
         return instalacionId;
@@ -49,6 +53,14 @@ public class InstalacionDeInmueble {
 
     public void setGas(String gas) {
         this.gas = gas;
+    }
+
+    public Inmueble getInmueble() {
+        return inmueble;
+    }
+
+    public void setInmueble(Inmueble inmueble) {
+        this.inmueble = inmueble;
     }
 
    

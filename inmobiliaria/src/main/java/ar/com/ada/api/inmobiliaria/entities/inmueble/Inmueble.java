@@ -11,6 +11,7 @@ import ar.com.ada.api.inmobiliaria.entities.amenitie.Amenitie;
 import ar.com.ada.api.inmobiliaria.entities.amenitie.AmenitieDeInmueble;
 import ar.com.ada.api.inmobiliaria.entities.caracteristica.Caracteristica;
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
+import ar.com.ada.api.inmobiliaria.entities.instalacion.InstalacionDeInmueble;
 import ar.com.ada.api.inmobiliaria.entities.operacion.Operacion;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locador;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
@@ -55,33 +56,19 @@ public class Inmueble {
     @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
     private Locador locador;
 
-    @JoinTable(name = "caracteristica_por_inmueble", joinColumns = @JoinColumn(name = "inmueble_id"), inverseJoinColumns = @JoinColumn(name = "caracteristica_id"))
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<CaracteristicaDeInmueble> caracteristicas;
-   
-    public void addCaracteristica(CaracteristicaDeInmueble caracteristica) {
-        if(this.caracteristicas == null){
-            this.caracteristicas = new ArrayList<>();
-        }
-        
-        this.caracteristicas.add(caracteristica);
-    }
+    @OneToOne
+    @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
+    private CaracteristicaDeInmueble caracterisitca;
+
+    @OneToOne
+    @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
+    private InstalacionDeInmueble instalacion;
+
+    @OneToOne
+    @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
+    private AmenitieDeInmueble amenitie;
     
 
-    @ManyToMany
-    @JoinTable(name = "amenitie_por_inmueble", joinColumns = @JoinColumn(name = "inmueble_id"), 
-    inverseJoinColumns = @JoinColumn(name = "amenitie_id"))
-    private List<AmenitieDeInmueble> amenities = new ArrayList<AmenitieDeInmueble>();
-
-   /* @ManyToMany(mappedBy = "inmuebles")
-    private List<Amenitie> amenities= new ArrayList<Amenitie>();
-*/
-    /*
-     * @OneToMany(mappedBy = "Inmueble", cascade = CascadeType.ALL)
-     * 
-     * @LazyCollection(LazyCollectionOption.FALSE) private List<Instalacion>
-     * instalaciones = new ArrayList<Instalacion>();
-     */
     public int getInmuebleId() {
         return inmuebleId;
     }
@@ -126,24 +113,6 @@ public class Inmueble {
         this.direccion = direccion;
     }
 
-    /*
-     * public Inmobiliaria getInmobiliaria() { return inmobiliaria; }
-     * 
-     * public void setInmobiliaria(Inmobiliaria inmobiliaria) { this.inmobiliaria =
-     * inmobiliaria; }
-     * 
-     * 
-     * public List<Caracteristica> getCaracteristicas() { return caracteristicas; }
-     * 
-     * public void setCaracteristicas(List<Caracteristica> caracteristicas) {
-     * this.caracteristicas = caracteristicas; }
-     * 
-     * public List<Instalacion> getInstalaciones() { return instalaciones; }
-     * 
-     * public void setInstalaciones(List<Instalacion> instalaciones) {
-     * this.instalaciones = instalaciones; }
-     */
-
     public Locatario getLocatario() {
         return locatario;
     }
@@ -180,22 +149,39 @@ public class Inmueble {
         this.inmobiliaria = inmobiliaria;
     }
 
-    public List<CaracteristicaDeInmueble> getCaracteristicas() {
-        return caracteristicas;
+    public Inmueble() {
     }
 
-    public void setCaracteristicas(List<CaracteristicaDeInmueble> caracteristicas) {
-        this.caracteristicas = caracteristicas;
-    }
-/*
-    public List<Amenitie> getAmenities() {
-        return amenities;
+    public List<Operacion> getOperaciones() {
+        return operaciones;
     }
 
-    public void setAmenities(List<Amenitie> amenities) {
-        this.amenities = amenities;
+    public void setOperaciones(List<Operacion> operaciones) {
+        this.operaciones = operaciones;
     }
-*/
 
+    public CaracteristicaDeInmueble getCaracterisitca() {
+        return caracterisitca;
+    }
+
+    public void setCaracterisitca(CaracteristicaDeInmueble caracterisitca) {
+        this.caracterisitca = caracterisitca;
+    }
+
+    public InstalacionDeInmueble getInstalacion() {
+        return instalacion;
+    }
+
+    public void setInstalacion(InstalacionDeInmueble instalacion) {
+        this.instalacion = instalacion;
+    }
+
+    public AmenitieDeInmueble getAmenitie() {
+        return amenitie;
+    }
+
+    public void setAmenitie(AmenitieDeInmueble amenitie) {
+        this.amenitie = amenitie;
+    }
 
 }
