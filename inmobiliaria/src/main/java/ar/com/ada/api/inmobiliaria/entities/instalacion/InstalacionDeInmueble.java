@@ -21,7 +21,7 @@ public class InstalacionDeInmueble {
     private String aguaCorriente;
     private String gas;
 
-    @OneToOne
+    @OneToOne(mappedBy = "inmueble_id")
     private Inmueble inmueble;
 
     public int getInstalacionId() {

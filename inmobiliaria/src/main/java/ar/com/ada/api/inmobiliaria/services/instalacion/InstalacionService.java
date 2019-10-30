@@ -5,6 +5,7 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.instalacion.InstalacionDeInmueble;
 import ar.com.ada.api.inmobiliaria.repositorys.instalacion.InstalacionRepository;
 import ar.com.ada.api.inmobiliaria.services.inmueble.InmuebleService;
@@ -27,7 +28,7 @@ public class InstalacionService {
 
     public InstalacionDeInmueble registrarInstalacion(int inmuebleId, String luz, String aguaCorriente, String gas) {
 
-        InmuebleService i = inmuebleService.buscarInmueblePorId(inmuebleId);
+        Inmueble i = inmuebleService.buscarInmueblePorId(inmuebleId);
         InstalacionDeInmueble instalacion = new InstalacionDeInmueble();
 
         instalacion.setLuz(luz);
