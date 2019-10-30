@@ -1,6 +1,5 @@
 package ar.com.ada.api.inmobiliaria.controllers.inmueble;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
-import ar.com.ada.api.inmobiliaria.entities.operacion.Operacion;
 import ar.com.ada.api.inmobiliaria.models.request.InmuebleRequest;
-import ar.com.ada.api.inmobiliaria.models.response.AlquiladoResponse;
-import ar.com.ada.api.inmobiliaria.models.response.DisponibleResponse;
 import ar.com.ada.api.inmobiliaria.models.response.PostResponse;
-import ar.com.ada.api.inmobiliaria.models.response.ReservadoResponse;
 import ar.com.ada.api.inmobiliaria.services.inmueble.InmuebleService;
 
 /**

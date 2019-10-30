@@ -7,6 +7,9 @@ import javax.persistence.*;
 
 
 import ar.com.ada.api.inmobiliaria.entities.caracteristica.CaracteristicaDeInmueble;
+import ar.com.ada.api.inmobiliaria.entities.amenitie.Amenitie;
+import ar.com.ada.api.inmobiliaria.entities.amenitie.AmenitieDeInmueble;
+import ar.com.ada.api.inmobiliaria.entities.caracteristica.Caracteristica;
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
 import ar.com.ada.api.inmobiliaria.entities.operacion.Operacion;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locador;
@@ -68,7 +71,7 @@ public class Inmueble {
     @ManyToMany
     @JoinTable(name = "amenitie_por_inmueble", joinColumns = @JoinColumn(name = "inmueble_id"), 
     inverseJoinColumns = @JoinColumn(name = "amenitie_id"))
-    private List<CaracteristicaDeInmueble> amenities = new ArrayList<CaracteristicaDeInmueble>();
+    private List<AmenitieDeInmueble> amenities = new ArrayList<AmenitieDeInmueble>();
 
    /* @ManyToMany(mappedBy = "inmuebles")
     private List<Amenitie> amenities= new ArrayList<Amenitie>();
@@ -122,6 +125,7 @@ public class Inmueble {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
     /*
      * public Inmobiliaria getInmobiliaria() { return inmobiliaria; }
      * 

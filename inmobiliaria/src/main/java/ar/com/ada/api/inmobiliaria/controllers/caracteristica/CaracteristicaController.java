@@ -28,6 +28,7 @@ public class CaracteristicaController {
         PostResponse c = new PostResponse();
         caracteristicaService.registrarCaracteristica(req.ambientes, req.balcon, req.baños, req.cochera, req.patio, req.terraza);
 
+        
         c.isOk = true;
         c.message = "Caracteristica registrada con éxito";
         
