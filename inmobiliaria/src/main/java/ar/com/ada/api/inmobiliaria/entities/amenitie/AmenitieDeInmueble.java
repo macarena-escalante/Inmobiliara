@@ -18,18 +18,19 @@ import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
  */
 @Entity
 @Table(name= "amenitie")
-public class Amenitie {
+public class AmenitieDeInmueble {
 
     @Id
     @Column(name = "amenitie_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int amenitieId;
+    private String ascensor;
+    private String pileta;
+    private String gimnasio;
 
 
     @ManyToMany(mappedBy = "amenities")
     private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
-    
-    private String descripcion;
 
     public int getAmenitieId() {
         return amenitieId;
@@ -39,11 +40,37 @@ public class Amenitie {
         this.amenitieId = amenitieId;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getAscensor() {
+        return ascensor;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setAscensor(String ascensor) {
+        this.ascensor = ascensor;
     }
+
+    public String getPileta() {
+        return pileta;
+    }
+
+    public void setPileta(String pileta) {
+        this.pileta = pileta;
+    }
+
+    public String getGimnasio() {
+        return gimnasio;
+    }
+
+    public void setGimnasio(String gimnasio) {
+        this.gimnasio = gimnasio;
+    }
+
+    public List<Inmueble> getInmuebles() {
+        return inmuebles;
+    }
+
+    public void setInmuebles(List<Inmueble> inmuebles) {
+        this.inmuebles = inmuebles;
+    }
+
+    
 }

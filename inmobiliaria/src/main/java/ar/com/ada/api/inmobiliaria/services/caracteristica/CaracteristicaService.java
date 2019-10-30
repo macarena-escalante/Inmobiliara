@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.com.ada.api.inmobiliaria.entities.caracteristica.Caracteristica;
+import ar.com.ada.api.inmobiliaria.entities.caracteristica.CaracteristicaDeInmueble;
 import ar.com.ada.api.inmobiliaria.repositorys.caracteristica.CaracteristicaRepository;
 
 /**
@@ -18,28 +18,33 @@ public class CaracteristicaService {
     @Autowired
     CaracteristicaRepository repoCaracteristica;
 
-    public void guardarCaracteristica(Caracteristica c) {
+    public void guardarCaracteristica(CaracteristicaDeInmueble c) {
         repoCaracteristica.save(c);
     }
 
-    public Caracteristica registrarCaracteristica(String descripcion) {
-        Caracteristica c = new Caracteristica();
+    public CaracteristicaDeInmueble registrarCaracteristica(int ambiente, int baño, int balcon, int patio, int cochera, int terraza) {
+        CaracteristicaDeInmueble c = new CaracteristicaDeInmueble();
 
-        c.setDescripcion(descripcion);
+        c.setAmbientes(ambiente);
+        c.setBaños(baño);
+        c.setBalcon(balcon);
+        c.setPatio(patio);
+        c.setCochera(cochera);
+        c.setTerraza(terraza);
 
         repoCaracteristica.save(c);
         return c;
 
     }
 
-    public List<Caracteristica> getCaracteristicas() {
+    public List<CaracteristicaDeInmueble> getCaracteristicas() {
 
         return repoCaracteristica.findAll();
     }
 
-    public Caracteristica buscarCaracteristicaPorId(int id) {
+    public CaracteristicaDeInmueble buscarCaracteristicaPorId(int id) {
 
-        Optional<Caracteristica> c = repoCaracteristica.findById(id);
+        Optional<CaracteristicaDeInmueble> c = repoCaracteristica.findById(id);
         if (c.isPresent())
             return c.get();
         return null;

@@ -5,7 +5,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import ar.com.ada.api.inmobiliaria.entities.caracteristica.Caracteristica;
+
+import ar.com.ada.api.inmobiliaria.entities.caracteristica.CaracteristicaDeInmueble;
 import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
 import ar.com.ada.api.inmobiliaria.entities.operacion.Operacion;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locador;
@@ -33,7 +34,7 @@ public class Inmueble {
 
     private String direccion;
 
-    @Column(name= "tipo_inmueble")
+    @Column(name = "tipo_inmueble")
     private String tipoInmueble;
 
     @ManyToOne
@@ -51,15 +52,23 @@ public class Inmueble {
     @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
     private Locador locador;
 
-    @ManyToMany
-    @JoinTable(name = "caracteristica_por_inmueble", joinColumns = @JoinColumn(name = "inmueble_id"), 
-    inverseJoinColumns = @JoinColumn(name = "caracteristica_id"))
-    private List<Caracteristica> caracteristicas = new ArrayList<Caracteristica>();
+    @JoinTable(name = "caracteristica_por_inmueble", joinColumns = @JoinColumn(name = "inmueble_id"), inverseJoinColumns = @JoinColumn(name = "caracteristica_id"))
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<CaracteristicaDeInmueble> caracteristicas;
+   
+    public void addCaracteristica(CaracteristicaDeInmueble caracteristica) {
+        if(this.caracteristicas == null){
+            this.caracteristicas = new ArrayList<>();
+        }
+        
+        this.caracteristicas.add(caracteristica);
+    }
+    
 
     @ManyToMany
     @JoinTable(name = "amenitie_por_inmueble", joinColumns = @JoinColumn(name = "inmueble_id"), 
     inverseJoinColumns = @JoinColumn(name = "amenitie_id"))
-    private List<Caracteristica> amenities = new ArrayList<Caracteristica>();
+    private List<CaracteristicaDeInmueble> amenities = new ArrayList<CaracteristicaDeInmueble>();
 
    /* @ManyToMany(mappedBy = "inmuebles")
     private List<Amenitie> amenities= new ArrayList<Amenitie>();
@@ -167,11 +176,11 @@ public class Inmueble {
         this.inmobiliaria = inmobiliaria;
     }
 
-    public List<Caracteristica> getCaracteristicas() {
+    public List<CaracteristicaDeInmueble> getCaracteristicas() {
         return caracteristicas;
     }
 
-    public void setCaracteristicas(List<Caracteristica> caracteristicas) {
+    public void setCaracteristicas(List<CaracteristicaDeInmueble> caracteristicas) {
         this.caracteristicas = caracteristicas;
     }
 /*
