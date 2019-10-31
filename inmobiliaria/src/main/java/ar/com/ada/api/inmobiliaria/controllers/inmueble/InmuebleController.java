@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.operacion.Operacion;
 import ar.com.ada.api.inmobiliaria.models.request.InmuebleRequest;
-import ar.com.ada.api.inmobiliaria.models.response.AlquiladoResponse;
-import ar.com.ada.api.inmobiliaria.models.response.DisponibleResponse;
+import ar.com.ada.api.inmobiliaria.models.response.EstadosResponse;
 import ar.com.ada.api.inmobiliaria.models.response.PostResponse;
-import ar.com.ada.api.inmobiliaria.models.response.ReservadoResponse;
 import ar.com.ada.api.inmobiliaria.services.inmueble.InmuebleService;
 
 /**
@@ -68,9 +66,9 @@ public class InmuebleController {
     }
 
     @GetMapping("/inmuebles/alquileres")
-    public List<Inmueble> getInmueblesByAlquiler() {
+    public List<EstadosResponse> getInmueblesByAlquiler() {
 
-        List<Inmueble> inmueblecitos = inmuebleService.getInmuebleAlquiler();
+        List<EstadosResponse> inmueblecitos = inmuebleService.getInmuebleAlquiler();
 
         return inmueblecitos;
         /*List<AlquiladoResponse> inmueblecitos = new ArrayList<AlquiladoResponse>();
@@ -93,8 +91,8 @@ public class InmuebleController {
     }
 
     @GetMapping("/inmuebles/reservas")
-    public List<Inmueble> getInmueblesByReserva() {
-        List<Inmueble> inmueblecitos = inmuebleService.getInmuebleAlquiler();
+    public List<EstadosResponse> getInmueblesByReserva() {
+        List<EstadosResponse> inmueblecitos = inmuebleService.getInmuebleAlquiler();
 
         return inmueblecitos;
 

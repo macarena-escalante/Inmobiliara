@@ -12,6 +12,7 @@ import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
 import ar.com.ada.api.inmobiliaria.entities.inmueble.Inmueble;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locador;
 import ar.com.ada.api.inmobiliaria.entities.persona.Locatario;
+import ar.com.ada.api.inmobiliaria.models.response.EstadosResponse;
 import ar.com.ada.api.inmobiliaria.repositorys.inmueble.InmuebleRepository;
 import ar.com.ada.api.inmobiliaria.services.amenitie.AmenitieService;
 import ar.com.ada.api.inmobiliaria.services.inmobiliaria.InmobiliariaService;
@@ -119,21 +120,29 @@ public class InmuebleService {
         return repoInmueble.findByEstado(estado);
     }
 
-    public List<Inmueble> getInmuebleAlquiler() {
+    public List<EstadosResponse> getInmuebleAlquiler() {
 
-        List<Inmueble> inmueblecitos = new ArrayList<Inmueble>();
+        List<EstadosResponse> inmueblecitos = new ArrayList<EstadosResponse>();
 
-        for (Inmueble t : getInmuebles()) {
-            if (t.getEstado().equals("Alquilado")) {
-                Inmueble i = t;
+        for (Inmueble t : this.getInmuebles()) {
+            if (t.getEstado().equals("alquilado")) {
+                EstadosResponse i = new EstadosResponse();
+                i.inmuebleId= t.getInmuebleId();
+                i.estado= t.getEstado();
+                i.nombreInmob= t.getInmobiliaria().getNombre();
+                i.direccion= t.getInmobiliaria().getDireccion();
+                i.email= t.getInmobiliaria().getEmail();
+                i.nombreLocador= t.getLocador().getNombre();
+
 
                 inmueblecitos.add(i);
-            }
+            
             
         }
-
+    }
         return inmueblecitos;
     }
+
 
     public List<Inmueble> getInmuebleReserva(){
 
