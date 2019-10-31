@@ -2,8 +2,6 @@ package ar.com.ada.api.inmobiliaria.models.response;
 
 import java.math.BigDecimal;
 
-import ar.com.ada.api.inmobiliaria.entities.inmobiliaria.Inmobiliaria;
-
 /**
  * InmuebleResponse
  */
@@ -19,6 +17,7 @@ public class EstadosResponse {
     public String email;
     public BigDecimal precio;
     public String estado;
+    public BigDecimal monto;
     
 
     public String message = "";
