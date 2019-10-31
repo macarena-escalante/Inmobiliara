@@ -18,101 +18,64 @@ USE `inmobiliaria`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `amenitie`
+-- Table structure for table `amenitie_de_inmueble`
 --
 
-DROP TABLE IF EXISTS `amenitie`;
+DROP TABLE IF EXISTS `amenitie_de_inmueble`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `amenitie` (
+CREATE TABLE `amenitie_de_inmueble` (
   `amenitie_id` int(11) NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(100) NOT NULL,
-  PRIMARY KEY (`amenitie_id`)
+  `inmueble_id` int(11) NOT NULL,
+  `pileta` varchar(45) NOT NULL,
+  `gimnasio` varchar(45) NOT NULL,
+  `ascensor` varchar(45) NOT NULL,
+  PRIMARY KEY (`amenitie_id`),
+  KEY `amenitie_inmueble_inmueble_idx` (`amenitie_id`),
+  KEY `amenitie_por_inmueble_fk_idx` (`inmueble_id`),
+  CONSTRAINT `amenitie_por_inmueble_fk` FOREIGN KEY (`inmueble_id`) REFERENCES `inmueble` (`inmueble_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `amenitie`
+-- Dumping data for table `amenitie_de_inmueble`
 --
 
-LOCK TABLES `amenitie` WRITE;
-/*!40000 ALTER TABLE `amenitie` DISABLE KEYS */;
-INSERT INTO `amenitie` VALUES (1,'Piscina');
-/*!40000 ALTER TABLE `amenitie` ENABLE KEYS */;
+LOCK TABLES `amenitie_de_inmueble` WRITE;
+/*!40000 ALTER TABLE `amenitie_de_inmueble` DISABLE KEYS */;
+/*!40000 ALTER TABLE `amenitie_de_inmueble` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `amenitie_por_inmueble`
+-- Table structure for table `caracteristica_de_inmueble`
 --
 
-DROP TABLE IF EXISTS `amenitie_por_inmueble`;
+DROP TABLE IF EXISTS `caracteristica_de_inmueble`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `amenitie_por_inmueble` (
-  `amenitie_id` int(11) NOT NULL,
-  `inmueble_id` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  PRIMARY KEY (`amenitie_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `amenitie_por_inmueble`
---
-
-LOCK TABLES `amenitie_por_inmueble` WRITE;
-/*!40000 ALTER TABLE `amenitie_por_inmueble` DISABLE KEYS */;
-/*!40000 ALTER TABLE `amenitie_por_inmueble` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `caracteristica`
---
-
-DROP TABLE IF EXISTS `caracteristica`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `caracteristica` (
+CREATE TABLE `caracteristica_de_inmueble` (
   `caracteristica_id` int(11) NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(100) NOT NULL,
-  PRIMARY KEY (`caracteristica_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `caracteristica`
---
-
-LOCK TABLES `caracteristica` WRITE;
-/*!40000 ALTER TABLE `caracteristica` DISABLE KEYS */;
-/*!40000 ALTER TABLE `caracteristica` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `caracteristica_por_inmueble`
---
-
-DROP TABLE IF EXISTS `caracteristica_por_inmueble`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `caracteristica_por_inmueble` (
-  `caracteristica_id` int(11) NOT NULL,
+  `ambientes` int(11) NOT NULL,
+  `baños` int(11) NOT NULL,
+  `balcon` int(11) NOT NULL,
+  `patio` int(11) NOT NULL,
+  `cochera` int(11) NOT NULL,
+  `terraza` int(11) NOT NULL,
   `inmueble_id` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
   PRIMARY KEY (`caracteristica_id`),
-  KEY `inmueble_caracteristica_fk_idx` (`inmueble_id`),
-  CONSTRAINT `caracteristica_caracteristica_fk` FOREIGN KEY (`caracteristica_id`) REFERENCES `caracteristica` (`caracteristica_id`),
-  CONSTRAINT `caracteristica_inmueble_fk` FOREIGN KEY (`inmueble_id`) REFERENCES `inmueble` (`inmueble_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `caracteristica_de_inmueble_idx` (`inmueble_id`),
+  CONSTRAINT `caracteristica_de_inmueble` FOREIGN KEY (`inmueble_id`) REFERENCES `inmueble` (`inmueble_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `caracteristica_por_inmueble`
+-- Dumping data for table `caracteristica_de_inmueble`
 --
 
-LOCK TABLES `caracteristica_por_inmueble` WRITE;
-/*!40000 ALTER TABLE `caracteristica_por_inmueble` DISABLE KEYS */;
-/*!40000 ALTER TABLE `caracteristica_por_inmueble` ENABLE KEYS */;
+LOCK TABLES `caracteristica_de_inmueble` WRITE;
+/*!40000 ALTER TABLE `caracteristica_de_inmueble` DISABLE KEYS */;
+INSERT INTO `caracteristica_de_inmueble` VALUES (2,2,1,1,0,0,0,9);
+/*!40000 ALTER TABLE `caracteristica_de_inmueble` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -129,7 +92,7 @@ CREATE TABLE `inmobiliaria` (
   `cuit` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`inmobiliaria_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +101,7 @@ CREATE TABLE `inmobiliaria` (
 
 LOCK TABLES `inmobiliaria` WRITE;
 /*!40000 ALTER TABLE `inmobiliaria` DISABLE KEYS */;
-INSERT INTO `inmobiliaria` VALUES (1,'Jose y Asociados','9 de Julio','2233','joseito@gmail.com'),(2,'Pedro Inmobiliaria','Av de Mayo','65656','pedroinmo@gmail.com');
+INSERT INTO `inmobiliaria` VALUES (1,'Jose y Asociados','9 de Julio','2233','joseito@gmail.com'),(2,'Pedro Inmobiliaria','Av de Mayo','65656','pedroinmo@gmail.com'),(3,'LuciaYAsociados','av de mayo','123488844','Lucia@.com'),(4,'fddfffdg','dfdsff','dssdfdsf','addfsf'),(5,'ChuitoJoseyAsociados','dfdsff','12345','chuito@'),(6,'MiguelyAsociados','dfdsff','12345654','migueljose@');
 /*!40000 ALTER TABLE `inmobiliaria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +130,7 @@ CREATE TABLE `inmueble` (
   CONSTRAINT `inmueble_inmobiliaria_fk2` FOREIGN KEY (`inmobiliaria_id`) REFERENCES `inmobiliaria` (`inmobiliaria_id`),
   CONSTRAINT `inmueble_locador_fk2` FOREIGN KEY (`locador_id`) REFERENCES `locador` (`locador_id`),
   CONSTRAINT `inmueble_locatario_fk2` FOREIGN KEY (`locatario_id`) REFERENCES `locatario` (`locatario_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,55 +139,37 @@ CREATE TABLE `inmueble` (
 
 LOCK TABLES `inmueble` WRITE;
 /*!40000 ALTER TABLE `inmueble` DISABLE KEYS */;
-INSERT INTO `inmueble` VALUES (5,'lelele',12,'Alquilado',15,15,1,NULL,2,'Casa'),(6,'lalala',12333,'Alquilado',34,20,1,NULL,1,'Departamento'),(7,'fefefe',3222,'Alquilado',35,10,1,NULL,1,'Casa'),(8,'jeje',1212,'Alquilado',45,12,1,NULL,3,'Departamento');
+INSERT INTO `inmueble` VALUES (9,'Av de Mayo',20000,'alquilado',145454,15,6,NULL,9,'Departamento');
 /*!40000 ALTER TABLE `inmueble` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `instalacion`
+-- Table structure for table `instalacion_de_inmueble`
 --
 
-DROP TABLE IF EXISTS `instalacion`;
+DROP TABLE IF EXISTS `instalacion_de_inmueble`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `instalacion` (
+CREATE TABLE `instalacion_de_inmueble` (
   `instalacion_id` int(11) NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(100) NOT NULL,
-  PRIMARY KEY (`instalacion_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `instalacion`
---
-
-LOCK TABLES `instalacion` WRITE;
-/*!40000 ALTER TABLE `instalacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `instalacion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `instalacion_por_inmueble`
---
-
-DROP TABLE IF EXISTS `instalacion_por_inmueble`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `instalacion_por_inmueble` (
-  `instalacion_id` int(11) NOT NULL,
+  `luz` varchar(45) NOT NULL,
+  `gas` varchar(45) NOT NULL,
+  `agua_corriente` varchar(45) NOT NULL,
   `inmueble_id` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  PRIMARY KEY (`instalacion_id`,`inmueble_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`instalacion_id`),
+  KEY `instalacion_de_inmueble_fk_idx` (`inmueble_id`),
+  CONSTRAINT `instalacion_de_inmueble_fk` FOREIGN KEY (`inmueble_id`) REFERENCES `inmueble` (`inmueble_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `instalacion_por_inmueble`
+-- Dumping data for table `instalacion_de_inmueble`
 --
 
-LOCK TABLES `instalacion_por_inmueble` WRITE;
-/*!40000 ALTER TABLE `instalacion_por_inmueble` DISABLE KEYS */;
-/*!40000 ALTER TABLE `instalacion_por_inmueble` ENABLE KEYS */;
+LOCK TABLES `instalacion_de_inmueble` WRITE;
+/*!40000 ALTER TABLE `instalacion_de_inmueble` DISABLE KEYS */;
+INSERT INTO `instalacion_de_inmueble` VALUES (1,'si','si','si',9);
+/*!40000 ALTER TABLE `instalacion_de_inmueble` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -237,13 +182,13 @@ DROP TABLE IF EXISTS `locador`;
 CREATE TABLE `locador` (
   `locador_id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
-  `dni` int(50) NOT NULL,
+  `dni` varchar(50) NOT NULL,
   `telefono` int(20) NOT NULL,
   `email` varchar(255) NOT NULL,
   `direccion` varchar(255) NOT NULL,
   PRIMARY KEY (`locador_id`),
   UNIQUE KEY `dni_UNIQUE` (`dni`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +197,7 @@ CREATE TABLE `locador` (
 
 LOCK TABLES `locador` WRITE;
 /*!40000 ALTER TABLE `locador` DISABLE KEYS */;
-INSERT INTO `locador` VALUES (1,'Pedro Jose',123456,654321,'pedro@gmail.com','Av 9 Julio '),(2,'Lucia Morales',325414,654123,'lucia@gmail.com','Av de Mayo');
+INSERT INTO `locador` VALUES (1,'Pedro Jose','123456',654321,'pedro@gmail.com','Av 9 Julio '),(2,'Lucia Morales','325414',654123,'lucia@gmail.com','Av de Mayo'),(3,'America','9594h',12345,'america@','Av de mayo');
 /*!40000 ALTER TABLE `locador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,7 +217,7 @@ CREATE TABLE `locatario` (
   `direccion` varchar(300) NOT NULL,
   PRIMARY KEY (`locatario_id`),
   UNIQUE KEY `dni_UNIQUE` (`dni`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,7 +226,7 @@ CREATE TABLE `locatario` (
 
 LOCK TABLES `locatario` WRITE;
 /*!40000 ALTER TABLE `locatario` DISABLE KEYS */;
-INSERT INTO `locatario` VALUES (1,'Mariana',454545,454545,'mariana@','av mariana'),(2,'Ronal',54545,854,'ronal@','av 9 de mayo'),(3,'maria',5656,54545,'maria@','av rivadavia');
+INSERT INTO `locatario` VALUES (1,'Mariana',454545,454545,'mariana@','av mariana'),(2,'Ronal',54545,854,'ronal@','av 9 de mayo'),(3,'maria',5656,54545,'maria@','av rivadavia'),(4,'Mabelita',12341234,1115,'mabel@','av de mayo'),(5,'Javier',1234555666,11785,'Javier@','av de mayo'),(6,'Lucia',12348886,1178885,'Lucia@','av de mayo'),(7,'Joseito',9595959,1125,'joseito@','av de mayo'),(9,'Josefina',9595988,1125,'josefina@gmail.com','av de mayo');
 /*!40000 ALTER TABLE `locatario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,10 +245,10 @@ CREATE TABLE `operacion` (
   `inmueble_id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   PRIMARY KEY (`operacion_id`),
-  KEY `operacion_inmueble_fk_idx` (`inmueble_id`),
-  KEY `operacion_usuario_fk_idx` (`usuario_id`),
-  CONSTRAINT `operacion_inmueble_fk2` FOREIGN KEY (`inmueble_id`) REFERENCES `inmueble` (`inmueble_id`),
-  CONSTRAINT `operacion_usuario_fk2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`usuario_id`)
+  KEY `operacion_inmueble_fkey2_idx` (`inmueble_id`),
+  KEY `operacion_usuario_fkey2_idx` (`usuario_id`),
+  CONSTRAINT `operacion_inmueble_fkey2` FOREIGN KEY (`inmueble_id`) REFERENCES `inmueble` (`inmueble_id`),
+  CONSTRAINT `operacion_usuario_fkey2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`usuario_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -313,7 +258,6 @@ CREATE TABLE `operacion` (
 
 LOCK TABLES `operacion` WRITE;
 /*!40000 ALTER TABLE `operacion` DISABLE KEYS */;
-INSERT INTO `operacion` VALUES (5,'2019-10-23 01:48:07',15,'Reserva',5,3),(7,'2019-10-23 02:08:35',150005,'Alquiler',8,6);
 /*!40000 ALTER TABLE `operacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -326,16 +270,20 @@ DROP TABLE IF EXISTS `usuario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
   `usuario_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `locatario_id` int(11) DEFAULT NULL,
   `inmobiliaria_id` int(11) DEFAULT NULL,
+  `locador_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`usuario_id`),
-  KEY `usuario_inmobiliaria_idx` (`inmobiliaria_id`),
-  KEY `usuario_locatario_fk_idx` (`locatario_id`),
-  CONSTRAINT `usuario_inmobiliaria_fk` FOREIGN KEY (`inmobiliaria_id`) REFERENCES `inmobiliaria` (`inmobiliaria_id`),
-  CONSTRAINT `usuario_locatario_fk` FOREIGN KEY (`locatario_id`) REFERENCES `locatario` (`locatario_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `usuario_locatario_fk2_idx` (`locatario_id`),
+  KEY `usuario_inmobiliaria_fk2_idx` (`inmobiliaria_id`),
+  KEY `usuario_locador_fk2_idx` (`locador_id`),
+  CONSTRAINT `usuario_inmobiliaria_fk2` FOREIGN KEY (`inmobiliaria_id`) REFERENCES `inmobiliaria` (`inmobiliaria_id`),
+  CONSTRAINT `usuario_locador_fk2` FOREIGN KEY (`locador_id`) REFERENCES `locador` (`locador_id`),
+  CONSTRAINT `usuario_locatario_fk2` FOREIGN KEY (`locatario_id`) REFERENCES `locatario` (`locatario_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -344,7 +292,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'ramon@','fddf',NULL,1),(2,'mariana@','sdfsdd',1,NULL),(3,'ronal@','qsqNe1eAjUP31kcNFOxFpg==',2,NULL),(6,'maria@','sdsdsd',3,NULL);
+INSERT INTO `usuario` VALUES (1,'','ramon@','fddf',NULL,1,NULL),(2,'','mariana@','sdfsdd',1,NULL,NULL),(3,'','ronal@','qsqNe1eAjUP31kcNFOxFpg==',2,NULL,NULL),(6,'','maria@','sdsdsd',3,NULL,NULL),(7,'mabel@','mabel@','Rp5N4LChlpzQm0cwlp9Gdg==',4,NULL,NULL),(8,'Lucia@','Lucia@','lB+D55oEENcr21vFdi240w==',6,NULL,NULL),(9,'Lucia@.com','Lucia@.com','nMvDSDLjMjdZbZlfAuvTtw==',NULL,3,NULL),(10,'addfsf','addfsf','Sw4W8goOYf0OI5pU4H+M5Q==',NULL,4,NULL),(11,'chuito@','chuito@','+hJ/X+Ovr7cNBgZiH3SZhg==',NULL,5,NULL),(12,'migueljose@','migueljose@','urHMupV5D2hKhhssdsoQRg==',NULL,6,NULL),(13,'joseito@','joseito@','GU0PQfnclmfCJUsNT20Fgg==',7,NULL,NULL),(14,'josefina@gmail.com','josefina@gmail.com','epjP/AOcSejeNpF/B2cYxA==',9,NULL,NULL),(15,'america@','america@','ZYTlUSB0l8IYlJtMZJqBAA==',NULL,NULL,3);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -357,4 +305,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-22 23:23:08
+-- Dump completed on 2019-10-31 20:37:36
